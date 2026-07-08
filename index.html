@@ -223,13 +223,11 @@ const questions = [
 
     ];
 
-// 最初に全問題をシャッフルした配列を準備する変数
-    let shuffledQuestions = [];
+let shuffledQuestions = [];
     let currentIdx = 0;
     let correct = 0;
     let total = 0;
 
-    // シャッフル用関数
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -238,7 +236,6 @@ const questions = [
         return array;
     }
 
-    // クイズの初期化（全問シャッフルして最初から開始）
     function initQuiz() {
         shuffledQuestions = shuffleArray([...questions]);
         currentIdx = 0;
@@ -248,11 +245,8 @@ const questions = [
         loadQuiz();
     }
 
-    // 問題を表示する関数
     function loadQuiz() {
-        // shuffledQuestionsから現在地(currentIdx)の問題を表示
         const currentQuestion = shuffledQuestions[currentIdx];
-        
         document.getElementById('wordDisplay').innerText = currentQuestion.q;
         document.getElementById('instructionDisplay').innerText = currentQuestion.time;
         document.getElementById('userInput').value = "";
@@ -285,10 +279,8 @@ const questions = [
         document.getElementById('nextBtn').style.display = "block";
     }
 
-    // 「Next」ボタンが押された時の処理
     function nextQuestion() {
         currentIdx++;
-        // 全問表示し終えたら再シャッフル
         if (currentIdx >= shuffledQuestions.length) {
             initQuiz();
         } else {
@@ -296,7 +288,6 @@ const questions = [
         }
     }
 
-    // 最初に実行
     initQuiz();
 </script>
 </body>
