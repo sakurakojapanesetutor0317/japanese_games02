@@ -3,194 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Japanese Verb Quiz ✨</title>
+    <title>Japanese Conjugation Master - want / want to - ✨</title>
     <style>
         :root {
-            --bg-color: #f5f3ff;
+            --bg-gradient: linear-gradient(135deg, #f0fdfa 0%, #faf5ff 100%);
             --card-bg: #ffffff;
-            --primary: #a78bfa;
-            --text-main: #4c1d95;
-            --correct-text: #059669;
-            --incorrect-text: #e11d48;
+            --primary: #2dd4bf; 
+            --primary-hover: #14b8a6;
+            --text-main: #115e59;
+            --text-sub: #0f766e;
+            --correct-bg: #ccfbf1;
+            --correct-text: #115e59;
+            --incorrect-bg: #ffe4e6;
+            --incorrect-text: #9f1239;
+            --border: #e2e8f0;
         }
 
-        body { font-family: 'Nunito', sans-serif; background-color: var(--bg-color); color: var(--text-main); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
-        .quiz-card { background-color: var(--card-bg); padding: 35px 25px; border-radius: 32px; box-shadow: 0 20px 40px -15px rgba(167, 139, 250, 0.15); text-align: center; width: 100%; max-width: 400px; border: 4px solid #f3e8ff; }
-        .emoji-display { font-size: 64px; margin-bottom: 10px; }
-        .word-display { font-size: 32px; font-weight: 800; margin-bottom: 25px; }
-        input[type="text"] { width: 100%; padding: 16px; font-size: 18px; border: 3px solid #f3e8ff; border-radius: 20px; text-align: center; box-sizing: border-box; }
-        
-        .button-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-        button { width: 100%; border: none; padding: 16px; font-size: 16px; font-weight: 700; border-radius: 20px; cursor: pointer; color: white; }
-        
-        .btn-check { background: linear-gradient(135deg, #c084fc, #a78bfa); }
-        .btn-answer { background: #cbd5e1; }
-        .btn-next { background: #818cf8; display: none; } /* 最初は非表示 */
-        
-        .result-area { margin-top: 20px; min-height: 85px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .correct-answer { font-size: 20pt; color: #e11d48; font-weight: 800; margin-top: 8px; }
-        .feedback { font-size: 18px; font-weight: 800; }
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .instruction {
+            font-size: 15px;
+            font-weight: 800;
+            padding: 6px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            letter-spacing: 0.03em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .badge-pres-aff { background-color: #e0f2fe; color: #0369a1; }
+        .badge-past-aff { background-color: #fef3c7; color: #b45309; }
+
+        .emoji-display {
+            font-size: 64px;
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .word-display {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.3;
+            margin-bottom: 25px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            border: 3px solid #ccfbf1;
+            border-radius: 20px;
+            text-align: center;
+            outline: none;
+            box-sizing: border-box;
+            background-color: #f0fdfa;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+
+    /* 1. カード全体の配置 */
+    .quiz-card {
+        background-color: #ffffff;
+        padding: 35px 25px;
+        border-radius: 32px;
+        text-align: center;
+        width: 100%;
+        max-width: 440px;
+        border: 4px solid #ccfbf1;
+        box-sizing: border-box;
+    }
+
+    /* 2. ボタンを確実に小さくするための設定 */
+    .btn-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 15px;
+        align-items: center; /* パソコンでも中央に寄せる */
+    }
+
+    .btn-stack button {
+        width: 100%;
+        padding: 8px 0;     /* 高さを抑える */
+        font-size: 14px;
+        font-weight: 700;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        color: #115e59;
+        background: #ccfbf1;
+        transition: transform 0.1s;
+    }
+
+    .btn-hint { background: #e2e8f0 !important; }
+    .btn-next { background: #dcfce7 !important; color: #166534 !important; display: none; }
+
+/* 解説カードの改善設定 */
+    .explanation-card { 
+        margin-top: 15px; 
+        padding: 12px 16px;      /* パディングを適度に配置 */
+        border: 2px solid #fecdd3; 
+        background: #fffafa; 
+        border-radius: 12px;     /* カードの角を丸くして柔らかく */
+        text-align: left; 
+        color: #9f1239; 
+        font-weight: 600;        /* 800から600へ下げて可読性アップ */
+        font-size: 15px;         /* 10pxではなく15pxで読みやすさを確保 */
+        line-height: 1.6;        /* 行間を広げて圧迫感を解消 */
+    }
+
+        .score-board {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px dashed #ccfbf1;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-sub);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
     </style>
 </head>
 <body>
 
 <div class="quiz-card">
-    <div class="instruction">🎮Type the te-form in hiragana ✨</div>
-<div id="emojiDisplay" class="emoji-display">⏰</div>
-<div id="wordDisplay" class="word-display">---</div>
-<div id="meaningDisplay" style="font-size: 18px; color: #7c3aed; margin-bottom: 20px;">---</div>
+    <div class="instruction" id="instructionDisplay">---</div>
+    <div><div class="emoji-display" id="emojiDisplay">✨</div></div>
+    <div class="word-display" id="wordDisplay">---</div>
     
-    <form id="quizForm" onsubmit="checkAnswer(event)">
-        <input type="text" id="userInput" placeholder="Type here... 🌸" autocomplete="off" required>
-        <div class="button-group">
-            <button type="submit" class="btn-check" id="checkBtn">Check! 👉</button>
-            <button type="button" class="btn-answer" id="answerBtn" onclick="showAnswer()">Answer! 👉</button>
-            <button type="button" class="btn-next" id="nextBtn" onclick="nextQuestion()">Next Question 👉</button>
-        </div>
-    </form>
-    
+<form id="quizForm">
+    <input type="text" id="userInput" placeholder="Typeひらがな here... 🌸" autocomplete="off" autofocus>
+    <div class="btn-stack">
+        <button type="button" onclick="checkAnswer()">Check! 👉</button>
+        <button type="button" class="btn-hint" onclick="showAnswer()">💡 Answer</button>
+        <button type="button" id="nextBtn" class="btn-next" onclick="loadQuiz()">Next Question 👉</button>
+    </div>
+</form>
+
+  
     <div class="result-area" id="resultArea"></div>
     
     <div class="score-board">
-        <span>Ganbatte! 🎀</span>
+        <span>🎀 Conjugation Master - want / want to - 🎀</span>
         <span id="scoreDisplay">Score: 0 / 0</span>
     </div>
-</div>
 
 
 <script>
-const quizData = [
-        { word: "work", answer: "はたらいて", ja: "はたらきます", emoji: "💼" },
-        { word: "write, draw, paint", answer: "かいて", ja: "かきます", emoji: "✏️" },
-        { word: "hear, listen", answer: "きいて", ja: "ききます", emoji: "🎧" },
-        { word: "go", answer: "いって", ja: "いきます", emoji: "🚶" },
-        { word: "swim", answer: "およいで", ja: "およぎます", emoji: "🏊" },
-        { word: "hurry", answer: "いそいで", ja: "いそぎます", emoji: "🏃" },
-        { word: "drink", answer: "のんで", ja: "のみます", emoji: "🍹" },
-        { word: "read", answer: "よんで", ja: "よみます", emoji: "📚" },
-        { word: "play, hang out", answer: "あそんで", ja: "あそびます", emoji: "🎈" },
-        { word: "call", answer: "よんで", ja: "よびます", emoji: "🗣️" },
-        { word: "meet, see [a friend]", answer: "あって", ja: "あいます", emoji: "🤝" },
-        { word: "buy", answer: "かって", ja: "かいます", emoji: "🛍️" },
-        { word: "receive", answer: "もらって", ja: "もらいます", emoji: "🎁" },
-        { word: "receive (formal)", answer: "うけとって", ja: "うけとります", emoji: "📦" },
-        { word: "help, assist", answer: "てつだって", ja: "てつだいます", emoji: "🤝" },
-        { word: "wait", answer: "まって", ja: "まちます", emoji: "⏳" },
-        { word: "hold / have", answer: "もって", ja: "もちます", emoji: "🎒" },
-        { word: "enter", answer: "はいって", ja: "はいります", emoji: "🚪" },
-        { word: "take, pass", answer: "とって", ja: "とります", emoji: "📸" },
-        { word: "turn", answer: "まがって", ja: "まがります", emoji: "🪧" },
-        { word: "rain", answer: "あめがふって", ja: "あめがふります", emoji: "☔" },
-        { word: "send", answer: "おくって", ja: "おくります", emoji: "✉️" },
-        { word: "speak, talk", answer: "はなして", ja: "はなします", emoji: "💬" },
-        { word: "turn off", answer: "けして", ja: "けします", emoji: "🔌" },
-        { word: "sleep", answer: "ねて", ja: "ねます", emoji: "🛌" },
-        { word: "eat", answer: "たべて", ja: "たべます", emoji: "🍰" },
-        { word: "go out of", answer: "でて", ja: "でます", emoji: "🏃" },
-        { word: "show", answer: "みせて", ja: "みせます", emoji: "👀" },
-        { word: "stop", answer: "やめて", ja: "やめます", emoji: "🛑" },
-        { word: "open", answer: "あけて", ja: "あけます", emoji: "🔓" },
-        { word: "turn on", answer: "つけて", ja: "つけます", emoji: "💡" },
-        { word: "tell", answer: "おしえて", ja: "おしえます", emoji: "🧑‍🏫" },
-        { word: "close, shut", answer: "しめて", ja: "しめます", emoji: "🚪" },
-        { word: "see, look at, watch", answer: "みて", ja: "みます", emoji: "📺" },
-        { word: "stay (I'm in)", answer: "いて", ja: "います", emoji: "🏠" },
-        { word: "wake up", answer: "おきて", ja: "おきます", emoji: "⏰" },
-        { word: "study", answer: "べんきょうして", ja: "べんきょうします", emoji: "✍️" },
-        { word: "take a walk", answer: "さんぽして", ja: "さんぽします", emoji: "🐕" },
-        { word: "have a meal", answer: "しょくじして", ja: "しょくじします", emoji: "🍽️" },
-        { word: "do shopping", answer: "かいものして", ja: "かいものします", emoji: "🛒" },
-        { word: "marry", answer: "けっこんして", ja: "けっこんします", emoji: "💍" },
-        { word: "copy", answer: "コピーして", ja: "コピーします", emoji: "📄" },
-        { word: "play tennis", answer: "テニスして", ja: "テニスします", emoji: "🎾" },
-        { word: "exercise", answer: "うんどうして", ja: "うんどうします", emoji: "🏋️‍♀️" },
-        { word: "play a game", answer: "ゲームして", ja: "ゲームします", emoji: "🎮" },
-        { word: "come", answer: "きて", ja: "きます", emoji: "🫴" }
+// エンターキーによる送信（デフォルト動作）を完全にブロックする
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        return false;
+    }
+});
+const questions = [
+        // Want (N)
+        { q: "I want a bag.\n→ かばんが（ ）", a: "ほしいです", expl: "want：ほしいです" , time: "Present" },
+        { q: "I don't want coffee.\n→ コーヒーが（ ）", a: "ほしくないです", expl: "not want：ほしくないです" , time: "Present"},
+        { q: "I wanted a computer.\n→ コンピューターが（ ）", a: "ほしかったです" , expl: "wanted：ほしかったです", time: "Past"},
+        { q: "They didn't want pizza.\n→ ピザが（ ）", a: "ほしくなかったです", expl: "didn't want：ほしくなかったです", time: "Past" },
+        // Want to V
+        { q: "She wants to eat sushi.\n→ すしを（ ）", a: "たべたいです", expl: "たべ【ます】➡たべ【たい】<br>want to eat：たべたいです" , time: "Present"},
+        { q: "I don't want to eat natto.\n→ なっとうを（ ）", a: "たべたくないです", expl: "たべ【ます】➡たべ【たくない】<br>don't want to eat：たべたくないです" , time: "Present" },
+        { q: "We wanted to watch TV.\n→ テレビを（ ）", a: "みたかったです" , expl: "み【ます】➡み【たかった】<br>wanted to watch：みたかったです", time: "Past" },
+        { q: "He didn't want to work yesterday.\n→ きのうはたらき（ ）", a: "たくなかったです", expl: "はたらき【ます】➡はらたき【たくなかった】<br>didn't want to work：はたらきたくなかったです" , time: "Past" },
+        { q: "They wanted to buy a car.\n→ くるまを（ ）", a: "かいたかったです", expl: "かい【ます】➡かい【たかった】<br>wanted to buy：かいたかったです"  , time: "Past"},
+        { q: "I didn't want to get up early.\n→ はやく（ ）", a: "おきたくなかったです", expl: "おき【ます】➡おき【たくなかった】<br>didn't want to wake up：おきたくなかったです" , time: "Past" },
+        // 追加分（計40問になるように構成してください）
+        { q: "I want a new book.\n→ あたらしいほんが（ ）", a: "ほしいです" , expl: "want：ほしいです", time: "Present"},
+        { q: "I don't want water.\n→ みずが（ ）", a: "ほしくないです", expl: "not want：ほしくないです", time: "Present"},
+        { q: "I wanted a bicycle.\n→ じてんしゃが（ ）", a: "ほしかったです" , expl: "wanted：ほしかったです", time: "Past"},
+        { q: "I didn't want the cake.\n→ ケーキが（ ）", a: "ほしくなかったです" , expl: "didn't want：ほしくなかっです", time: "Past"},
+        { q: "I want a ticket.\n→ チケットが（ ）", a: "ほしいです", expl: "want：ほしいです" , time: "Present"},
+        { q: "I don't want this pen.\n→ このペンが（ ）", a: "ほしくないです", expl: "not want：ほしくないです" , time: "Present"},
+        { q: "I wanted a camera.\n→ カメラが（ ）", a: "ほしかったです", expl: "wanted：ほしかったです" , time: "Past"},
+        { q: "I didn't want the money.\n→ おかねが（ ）", a: "ほしくなかったです"  , expl: "didn't want：ほしくなかったです", time: "Past"},
+        { q: "I want a dog.\n→ いぬが（ ）", a: "ほしいです" , expl: "want：ほしいです", time: "Present"},
+        { q: "I don't want cold milk.\n→ つめたいぎゅうにゅうが（ ）", a: "ほしくないです" , expl: "not want：ほしくないです", time: "Present"},
+        { q: "I wanted a red dress.\n→ あかいドレスが（ ）", a: "ほしかったです" , expl: "wanted：ほしかったです", time: "Past"},
+        { q: "I didn't want any help.\n→ たすけが（ ）", a: "ほしくなかったです", expl: "didn't want：ほしくなかったです" , time: "Past"},
+        { q: "I want to go to Japan.\n→ にほんへ（ ）", a: "いきたいです" , expl: "ます➡たい<br>want to go：いきたいです", time: "Present"},
+        { q: "I don't want to go outside.\n→ そとへ（ ）", a: "いきたくないです", expl: "ます➡たくない<br>don't want to go：いきたくないです" , time: "Present"},
+        { q: "I wanted to go to the park.\n→ こうえんへ（ ）", a: "いきたかったです" , expl: "いき【ます】➡いき【たかった】<br>wanted to go：いきたかったです", time: "Past"},
+        { q: "I didn't want to go home.\n→ うちへ（ ）", a: "いきたくなかったです" , expl: "いき【ます】➡いき【たくなかった】<br>didn't want to go：いきたくなかったです", time: "Past"},
+        { q: "I want to study Japanese.\n→ にほんごをべんきょう（ ）", a: "したいです" , expl: "し【ます】➡し【たい】<br>want to study：べんきょうしたいです", time: "Present"},
+        { q: "I don't want to study today.\n→ きょうはべんきょう（ ）", a: "したくないです" , expl: "し【ます】➡し【たくない】<br>don't want to study：べんきょうしたくないです", time: "Present"},
+        { q: "I wanted to study Japanese.\n→ にほんごをべんきょう（ ）", a: "したかったです" , expl: "し【ます】➡し【たかった】<br>wanted to study：べんきょうしたかったです", time: "Past"},
+        { q: "I didn't want to study.\n→ れきしをべんきょう（ ）", a: "したくなかったです" , expl: "し【ます】➡し【たくなかった】<br>didn't want to study：べんきょうしたくなかったです", time: "Past"},
+        { q: "I want to play tennis.\n→ テニスを（ ）", a: "したいです" , expl: "し【ます】➡し【たい】<br>want to play：したいです", time: "Present"},
+        { q: "I don't want to play games.\n→ ゲームを（ ）", a: "したくないです", expl: "し【ます】➡し【たくない】<br>don't want to play：したくないです" , time: "Present"},
+        { q: "I wanted to exercise.\n→ うんどうを（ ）", a: "したかったです" , expl: "し【ます】➡し【たい】<br>wanted to exercise：うんどうしたかったです", time: "Past"},
+        { q: "I didn't want to exercise.\n→ うんどうを（ ）", a: "したくなかったです", expl: "し【ます】➡し【たかった】<br>didn't want to exercise：うんどうしたくなかったです" , time: "Past"},
+        { q: "I want to drink tea.\n→ おちゃを（ ）", a: "のみたいです" , expl: "のみ【ます】➡のみ【たい】<br>want to drink：のみたいです", time: "Present"},
+        { q: "I don't want to drink juice.\n→ ジュースを（ ）", a: "のみたくないです" , expl: "のみ【ます】➡のみ【たくない】<br>don't want to drink：のみたくないです", time: "Present"},
+        { q: "I wanted to read a book.\n→ ほんを（ ）", a: "よみたかったです", expl: "よみ【ます】➡よみ【たかった】<br>wanted to read：よみたかったです", time: "Past" },
+        { q: "I didn't want to watch TV.\n→ テレビを（ ）", a: "みたくなかったです", expl: "み【ます】➡み【たくなかった】<br>didn't want to watch：みたくなかったです" , time: "Past"},
+        { q: "I want to buy a car.\n→ くるまを（ ）", a: "かいたいです", expl: "かい【ます】➡かい【たい】<br>want to buy：かいたいです" , time: "Present"},
+        { q: "I don't want to buy clothes.\n→ ふくを（ ）", a: "かいたくないです" , expl: "かい【ます】➡かい【たくない】<br>dpn't want to buy：かいたくないです", time: "Present"}
+
+
     ];
 
-    let currentIndex = Math.floor(Math.random() * quizData.length);
-    let score = 0;
-    let total = 0;
+let correct = 0, total = 0, currentIdx = 0;
 
-// 修正1: 関数を統一し、ます形を表示するように修正
-    function showQuestion() {
-        const item = quizData[currentIndex];
-        document.getElementById('emojiDisplay').textContent = item.emoji;
-        document.getElementById('wordDisplay').textContent = item.word;
-        
-        // ます形を表示するIDを追加
-        document.getElementById('meaningDisplay').textContent = item.ja;
-        
-        document.getElementById('resultArea').innerHTML = "";
+    function loadQuiz() {
+        currentIdx = Math.floor(Math.random() * questions.length);
+        document.getElementById('wordDisplay').innerText = questions[currentIdx].q;
+        document.getElementById('instructionDisplay').innerText = questions[currentIdx].time;
         document.getElementById('userInput').value = "";
-        
-        document.getElementById('checkBtn').style.display = 'block';
-        document.getElementById('answerBtn').style.display = 'block';
-        document.getElementById('nextBtn').style.display = 'none';
+        document.getElementById('resultArea').innerHTML = "";
+        document.getElementById('nextBtn').style.display = "none";
     }
 
+function checkAnswer() {
+        // Nextボタンが表示されている（回答済み）状態なら、何もしない（次の問題へ進ませない）
+        if (document.getElementById('nextBtn').style.display === "block") return;
 
+        const input = document.getElementById('userInput').value.trim();
+        const res = document.getElementById('resultArea');
         
-    function showAnswer() {
-        document.getElementById('resultArea').innerHTML = `<div class='correct-answer'>${quizData[currentIndex].answer}</div>`;
-        toggleButtons();
-    }
-
-function checkAnswer(event) {
-        event.preventDefault();
-        const userInput = document.getElementById('userInput').value.trim();
-        const correctAnswer = quizData[currentIndex].answer;
-        const resultArea = document.getElementById('resultArea');
-        
-        // スコア計算のロジック
-        total++;
-        if (userInput === correctAnswer) {
-            score++;
-            resultArea.innerHTML = "<div class='feedback' style='color:#F172A3;'>🎉 Correct!</div>";
+        if (input === questions[currentIdx].a) {
+            res.innerHTML = "<div style='color:#059669; font-weight:900; margin-top:15px;'>🎉 Correct!</div>";
+            correct++;
         } else {
-            resultArea.innerHTML = `<div class='feedback' style='color:#F172A3;'>ぴえん 😭 Wrong</div>
-                                    <div class='correct-answer'>${correctAnswer}</div>`;
+            res.innerHTML = `<div class='explanation-card'>❌ Incorrect<br><br>${questions[currentIdx].expl}</div>`;
         }
-
-        // スコア表示の更新（ここが抜けていました）
-        document.getElementById('scoreDisplay').textContent = `Score: ${score} / ${total}`;
+        total++;
+        document.getElementById('scoreDisplay').innerText = `Score: ${correct} / ${total}`;
         
-        toggleButtons();
+        // ここでNextボタンを表示させるが、この時点ではまだloadQuiz()は呼ばれない
+        document.getElementById('nextBtn').style.display = "block";
     }
 
-    // ボタンの表示を切り替える関数
-    function toggleButtons() {
-        document.getElementById('checkBtn').style.display = 'none';
-        document.getElementById('answerBtn').style.display = 'none';
-        document.getElementById('nextBtn').style.display = 'block';
+    function showAnswer() {
+        if (document.getElementById('nextBtn').style.display === "block") return;
+        document.getElementById('userInput').value = questions[currentIdx].a;
+        document.getElementById('resultArea').innerHTML = `<div class='explanation-card'>💡 Answer<br><br>${questions[currentIdx].expl}</div>`;
+        document.getElementById('nextBtn').style.display = "block";
     }
 
-// 配列の先頭で history を定義しておきます
-let history = [];
-const HISTORY_LIMIT = 5; // 直近何問の重複を防ぐか（例：5問）
-
-function nextQuestion() {
-    let nextIndex;
-    
-    // 重複しない、かつ履歴に含まれないものを探す
-    do {
-        nextIndex = Math.floor(Math.random() * quizData.length);
-    } while (history.includes(nextIndex)); // 履歴にあれば選び直す
-
-    // 履歴を更新
-    history.push(nextIndex);
-    if (history.length > HISTORY_LIMIT) {
-        history.shift(); // 古いものから削除
-    }
-    
-    currentIndex = nextIndex;
-    showQuestion();
-}
-
-// ページ読み込み時に最初の問題を表示する処理を追加！
-showQuestion();
-
+    loadQuiz();
 </script>
-
 </body>
 </html>
