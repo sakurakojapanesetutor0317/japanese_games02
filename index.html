@@ -168,7 +168,10 @@
 
 
 <script>
+// 1. エンターキー無効化
+    document.addEventListener('keydown', (e) => { if (e.key === 'Enter') e.preventDefault(); });
 
+    // 2. 問題データ（ここに全40問を入れてください）
 const questions = [
         // Want (N)
         { q: "I want a bag.\n→ かばんが（ ）", a: "ほしいです", expl: "want：ほしいです" , time: "Present" },
@@ -217,27 +220,19 @@ const questions = [
 
     ];
 
-// 2. シャッフル専用の変数
-    let shuffled = [];
-    let idx = 0;
-    let score = 0;
-    let total = 0;
+// 3. シャッフル専用ロジック
+    let shuffled = [], idx = 0, correct = 0, total = 0;
 
-    // 3. シャッフルして初期化する関数
     function initQuiz() {
-        shuffled = [...quizData].sort(() => Math.random() - 0.5);
-        idx = 0;
-        score = 0;
-        total = 0;
-        showQuestion();
+        shuffled = [...questions].sort(() => Math.random() - 0.5);
+        idx = 0; correct = 0; total = 0;
+        render();
     }
 
-    // 4. 画面に問題を表示する関数
-    function showQuestion() {
+    function render() {
         const q = shuffled[idx];
-        document.getElementById('emojiDisplay').textContent = q.emoji;
-        document.getElementById('wordDisplay').textContent = q.word;
-        document.getElementById('meaningDisplay').textContent = q.ja;
+        document.getElementById('wordDisplay').innerText = q.q;
+        document.getElementById('instructionDisplay').innerText = q.time;
         document.getElementById('userInput').value = "";
         document.getElementById('resultArea').innerHTML = "";
         document.getElementById('checkBtn').style.display = "block";
@@ -245,45 +240,36 @@ const questions = [
         document.getElementById('nextBtn').style.display = "none";
     }
 
-    // 5. チェックボタン用
-    function checkAnswer(event) {
-        if(event) event.preventDefault();
+    function checkAnswer() {
         const input = document.getElementById('userInput').value.trim();
-        const correct = shuffled[idx].answer;
-        
-        total++;
-        if(input === correct) {
-            document.getElementById('resultArea').innerHTML = "🎉 正解！";
-            score++;
+        if(input === shuffled[idx].a) {
+            document.getElementById('resultArea').innerHTML = "🎉 Correct!";
+            correct++;
         } else {
-            document.getElementById('resultArea').innerHTML = "❌ 答え: " + correct;
+            document.getElementById('resultArea').innerHTML = "❌ " + shuffled[idx].expl;
         }
-        document.getElementById('scoreDisplay').textContent = `Score: ${score} / ${total}`;
-        
-        document.getElementById('checkBtn').style.display = "none";
-        document.getElementById('answerBtn').style.display = "none";
-        document.getElementById('nextBtn').style.display = "block";
+        total++;
+        document.getElementById('scoreDisplay').innerText = `Score: ${correct} / ${total}`;
+        toggleButtons(true);
     }
 
-    // 6. 次へ進むボタン用（これが壊れていた原因です）
+    function showAnswer() {
+        document.getElementById('resultArea').innerHTML = "💡 " + shuffled[idx].expl;
+        toggleButtons(true);
+    }
+
     function nextQuestion() {
         idx++;
-        if(idx >= shuffled.length) {
-            initQuiz(); // 全問終わったら自動シャッフルして再開
-        } else {
-            showQuestion();
-        }
+        if(idx >= shuffled.length) initQuiz();
+        else render();
     }
 
-    // 7. Answerボタン用
-    function showAnswer() {
-        document.getElementById('resultArea').innerHTML = "💡 答え: " + shuffled[idx].answer;
-        document.getElementById('checkBtn').style.display = "none";
-        document.getElementById('answerBtn').style.display = "none";
-        document.getElementById('nextBtn').style.display = "block";
+    function toggleButtons(showNext) {
+        document.getElementById('checkBtn').style.display = showNext ? "none" : "block";
+        document.getElementById('answerBtn').style.display = showNext ? "none" : "block";
+        document.getElementById('nextBtn').style.display = showNext ? "block" : "none";
     }
 
-    // 起動
     initQuiz();
 </script>
 </body>
