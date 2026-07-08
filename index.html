@@ -168,13 +168,7 @@
 
 
 <script>
-// エンターキーによる送信（デフォルト動作）を完全にブロックする
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        return false;
-    }
-});
+
 const questions = [
         // Want (N)
         { q: "I want a bag.\n→ かばんが（ ）", a: "ほしいです", expl: "want：ほしいです" , time: "Present" },
@@ -223,71 +217,73 @@ const questions = [
 
     ];
 
-let shuffledQuestions = [];
-    let currentIdx = 0;
-    let correct = 0;
+// 2. シャッフル専用の変数
+    let shuffled = [];
+    let idx = 0;
+    let score = 0;
     let total = 0;
 
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
-
+    // 3. シャッフルして初期化する関数
     function initQuiz() {
-        shuffledQuestions = shuffleArray([...questions]);
-        currentIdx = 0;
-        correct = 0;
+        shuffled = [...quizData].sort(() => Math.random() - 0.5);
+        idx = 0;
+        score = 0;
         total = 0;
-        document.getElementById('scoreDisplay').innerText = `Score: 0 / 0`;
-        loadQuiz();
+        showQuestion();
     }
 
-    function loadQuiz() {
-        const currentQuestion = shuffledQuestions[currentIdx];
-        document.getElementById('wordDisplay').innerText = currentQuestion.q;
-        document.getElementById('instructionDisplay').innerText = currentQuestion.time;
+    // 4. 画面に問題を表示する関数
+    function showQuestion() {
+        const q = shuffled[idx];
+        document.getElementById('emojiDisplay').textContent = q.emoji;
+        document.getElementById('wordDisplay').textContent = q.word;
+        document.getElementById('meaningDisplay').textContent = q.ja;
         document.getElementById('userInput').value = "";
         document.getElementById('resultArea').innerHTML = "";
+        document.getElementById('checkBtn').style.display = "block";
+        document.getElementById('answerBtn').style.display = "block";
         document.getElementById('nextBtn').style.display = "none";
     }
 
-    function checkAnswer() {
-        if (document.getElementById('nextBtn').style.display === "block") return;
-
+    // 5. チェックボタン用
+    function checkAnswer(event) {
+        if(event) event.preventDefault();
         const input = document.getElementById('userInput').value.trim();
-        const res = document.getElementById('resultArea');
-        const currentQuestion = shuffledQuestions[currentIdx];
+        const correct = shuffled[idx].answer;
         
-        if (input === currentQuestion.a) {
-            res.innerHTML = "<div style='color:#059669; font-weight:900; margin-top:15px;'>🎉 Correct!</div>";
-            correct++;
-        } else {
-            res.innerHTML = `<div class='explanation-card'>❌ Incorrect<br><br>${currentQuestion.expl}</div>`;
-        }
         total++;
-        document.getElementById('scoreDisplay').innerText = `Score: ${correct} / ${total}`;
-        document.getElementById('nextBtn').style.display = "block";
-    }
-
-    function showAnswer() {
-        if (document.getElementById('nextBtn').style.display === "block") return;
-        document.getElementById('userInput').value = shuffledQuestions[currentIdx].a;
-        document.getElementById('resultArea').innerHTML = `<div class='explanation-card'>💡 Answer<br><br>${shuffledQuestions[currentIdx].expl}</div>`;
-        document.getElementById('nextBtn').style.display = "block";
-    }
-
-    function nextQuestion() {
-        currentIdx++;
-        if (currentIdx >= shuffledQuestions.length) {
-            initQuiz();
+        if(input === correct) {
+            document.getElementById('resultArea').innerHTML = "🎉 正解！";
+            score++;
         } else {
-            loadQuiz();
+            document.getElementById('resultArea').innerHTML = "❌ 答え: " + correct;
+        }
+        document.getElementById('scoreDisplay').textContent = `Score: ${score} / ${total}`;
+        
+        document.getElementById('checkBtn').style.display = "none";
+        document.getElementById('answerBtn').style.display = "none";
+        document.getElementById('nextBtn').style.display = "block";
+    }
+
+    // 6. 次へ進むボタン用（これが壊れていた原因です）
+    function nextQuestion() {
+        idx++;
+        if(idx >= shuffled.length) {
+            initQuiz(); // 全問終わったら自動シャッフルして再開
+        } else {
+            showQuestion();
         }
     }
 
+    // 7. Answerボタン用
+    function showAnswer() {
+        document.getElementById('resultArea').innerHTML = "💡 答え: " + shuffled[idx].answer;
+        document.getElementById('checkBtn').style.display = "none";
+        document.getElementById('answerBtn').style.display = "none";
+        document.getElementById('nextBtn').style.display = "block";
+    }
+
+    // 起動
     initQuiz();
 </script>
 </body>
