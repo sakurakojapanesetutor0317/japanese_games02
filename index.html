@@ -144,6 +144,7 @@
 </head>
 <body>
 
+
 <div class="quiz-card">
     <div class="instruction" id="instructionDisplay">---</div>
     <div><div class="emoji-display" id="emojiDisplay">✨</div></div>
@@ -265,8 +266,8 @@ const questions = [
     }
 
     function toggleButtons(showNext) {
-        document.getElementById('checkBtn').style.display = showNext ? "none" : "block";
-        document.getElementById('answerBtn').style.display = showNext ? "none" : "block";
+        document.getElementById('checkAnswer').style.display = showNext ? "none" : "block";
+        document.getElementById('btn-hint').style.display = showNext ? "none" : "block";
         document.getElementById('nextBtn').style.display = showNext ? "block" : "none";
     }
 
