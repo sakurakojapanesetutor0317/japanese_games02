@@ -223,45 +223,81 @@ const questions = [
 
     ];
 
-let correct = 0, total = 0, currentIdx = 0;
+// 最初に全問題をシャッフルした配列を準備する変数
+    let shuffledQuestions = [];
+    let currentIdx = 0;
+    let correct = 0;
+    let total = 0;
 
+    // シャッフル用関数
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    // クイズの初期化（全問シャッフルして最初から開始）
+    function initQuiz() {
+        shuffledQuestions = shuffleArray([...questions]);
+        currentIdx = 0;
+        correct = 0;
+        total = 0;
+        document.getElementById('scoreDisplay').innerText = `Score: 0 / 0`;
+        loadQuiz();
+    }
+
+    // 問題を表示する関数
     function loadQuiz() {
-        currentIdx = Math.floor(Math.random() * questions.length);
-        document.getElementById('wordDisplay').innerText = questions[currentIdx].q;
-        document.getElementById('instructionDisplay').innerText = questions[currentIdx].time;
+        // shuffledQuestionsから現在地(currentIdx)の問題を表示
+        const currentQuestion = shuffledQuestions[currentIdx];
+        
+        document.getElementById('wordDisplay').innerText = currentQuestion.q;
+        document.getElementById('instructionDisplay').innerText = currentQuestion.time;
         document.getElementById('userInput').value = "";
         document.getElementById('resultArea').innerHTML = "";
         document.getElementById('nextBtn').style.display = "none";
     }
 
-function checkAnswer() {
-        // Nextボタンが表示されている（回答済み）状態なら、何もしない（次の問題へ進ませない）
+    function checkAnswer() {
         if (document.getElementById('nextBtn').style.display === "block") return;
 
         const input = document.getElementById('userInput').value.trim();
         const res = document.getElementById('resultArea');
+        const currentQuestion = shuffledQuestions[currentIdx];
         
-        if (input === questions[currentIdx].a) {
+        if (input === currentQuestion.a) {
             res.innerHTML = "<div style='color:#059669; font-weight:900; margin-top:15px;'>🎉 Correct!</div>";
             correct++;
         } else {
-            res.innerHTML = `<div class='explanation-card'>❌ Incorrect<br><br>${questions[currentIdx].expl}</div>`;
+            res.innerHTML = `<div class='explanation-card'>❌ Incorrect<br><br>${currentQuestion.expl}</div>`;
         }
         total++;
         document.getElementById('scoreDisplay').innerText = `Score: ${correct} / ${total}`;
-        
-        // ここでNextボタンを表示させるが、この時点ではまだloadQuiz()は呼ばれない
         document.getElementById('nextBtn').style.display = "block";
     }
 
     function showAnswer() {
         if (document.getElementById('nextBtn').style.display === "block") return;
-        document.getElementById('userInput').value = questions[currentIdx].a;
-        document.getElementById('resultArea').innerHTML = `<div class='explanation-card'>💡 Answer<br><br>${questions[currentIdx].expl}</div>`;
+        document.getElementById('userInput').value = shuffledQuestions[currentIdx].a;
+        document.getElementById('resultArea').innerHTML = `<div class='explanation-card'>💡 Answer<br><br>${shuffledQuestions[currentIdx].expl}</div>`;
         document.getElementById('nextBtn').style.display = "block";
     }
 
-    loadQuiz();
+    // 「Next」ボタンが押された時の処理
+    function nextQuestion() {
+        currentIdx++;
+        // 全問表示し終えたら再シャッフル
+        if (currentIdx >= shuffledQuestions.length) {
+            initQuiz();
+        } else {
+            loadQuiz();
+        }
+    }
+
+    // 最初に実行
+    initQuiz();
 </script>
 </body>
 </html>
