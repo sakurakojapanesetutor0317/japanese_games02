@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Japanese Reading Materials | Sakura Japanese</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Noto+Sans+JP:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Georgia&display=swap');
+:root{--rose:#f39aaa;--ink:#343543;--muted:#8d8d99;--line:#f9dfe5}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:'DM Sans','Noto Sans JP',sans-serif;background:linear-gradient(110deg,#ffe0e5,#fff0f0 65%,#f9e0e8);}
+.shell{max-width:1100px;margin:16px auto 28px;border-radius:23px;overflow:hidden;background:linear-gradient(#fff9f9,#fffafa);box-shadow:0 20px 70px #cc9da633;border:1px solid #ffffffba;position:relative}
+nav{height:59px;background:#fffafac9;display:flex;justify-content:center;align-items:center;gap:27px;border-bottom:1px solid #ffffffa0;font-size:12px;position:relative;z-index:4}
+nav a{color:#54515c;text-decoration:none;padding:8px 15px;border-radius:24px}nav a.active{color:#d84f74;background:#ffe1e7}
+.hero{height:270px;position:relative;background:radial-gradient(ellipse at 75% 15%,#ffe2e6 0%,transparent 65%),linear-gradient(160deg,#fff5f5,#fbe9ec 65%,#fbe1e9);overflow:hidden}
+.hero:after{content:'✿  ·  ✿';position:absolute;left:2%;top:30px;color:#ffb6c5;font-size:24px;opacity:.6}
+.fuji{position:absolute;width:39%;left:34%;bottom:-12px;opacity:.76}
+.bird{position:absolute;right:-1%;top:-1%;width:46%;max-width:455px}
+.hero-copy{position:absolute;left:8%;top:49px;z-index:2}h1{font-family:Georgia,serif;font-size:clamp(31px,4vw,47px);line-height:1.07;letter-spacing:-.7px;margin:0 0 18px;font-weight:700}
+.hero-copy p{color:#858692;line-height:1.7;font-size:14px;margin:0}
+.content{position:relative;padding:30px 43px 54px;background:linear-gradient(#fffafaed,#fff9fa)}
+.content:before{content:'';position:absolute;left:0;right:0;top:0;height:25px;background:linear-gradient(180deg,#fffafa88,transparent)}
+.heading{display:flex;align-items:center;gap:15px;margin:0 0 27px}
+.heading img{width:63px;height:54px;object-fit:contain}h2{font-family:Georgia,serif;font-size:27px;margin:0 0 4px}.heading p{color:#95929e;font-size:12px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.reading-card{border:1px solid #f8dfe5;border-radius:18px;background:linear-gradient(150deg,#fff4f6,#fff9fa);padding:17px 16px 16px;text-decoration:none;color:inherit;box-shadow:0 4px 15px #efc7d321;display:block;transition:transform .2s,box-shadow .2s}
+a.reading-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px #efb6c15e}
+.month{font:21px Georgia,serif;color:#ed5575;margin:0 0 10px}
+.reading-card>img,.reading-card>.soon-media>img{width:100%;height:127px;object-fit:cover;border-radius:9px;display:block}
+.jp-title{font-family:'Noto Sans JP',sans-serif;font-size:17px;font-weight:700;margin-top:12px}
+.kana{font-size:11px;color:#93909a;margin-top:1px}.card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.level{font-size:12px;padding:5px 15px;border-radius:20px;background:#e4edff;color:#688cc6}.level.warm{background:#fff0dd;color:#8d7760}
+.arrow{height:28px;width:28px;border-radius:50%;display:grid;place-items:center;background:#f7afc0;color:white;font-size:20px}
+.soon .arrow{background:#eed8de}.soon{opacity:.83}
+.corner{position:absolute;bottom:0;left:0;width:105px;opacity:.8;pointer-events:none}
+.ornament{font-size:22px;text-align:center;color:#f6a7b7;margin-top:25px;letter-spacing:9px}
+footer{text-align:center;font-size:11px;color:#b3a3ab;padding:0 0 17px}
+@media(max-width:740px){.shell{margin:0;border-radius:0}nav{gap:2px;font-size:10px;justify-content:space-around}nav a{padding:7px 8px}.hero{height:245px}.hero-copy{left:6%;top:40px}.hero-copy p{font-size:12px;max-width:220px}.bird{width:55%;right:-13%;top:8%}.fuji{width:58%;left:30%}.content{padding:24px 20px 35px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.reading-card{padding:12px}.reading-card>img,.reading-card>.soon-media>img{height:105px}.month{font-size:19px}h2{font-size:23px}}
+@media(max-width:430px){.grid{grid-template-columns:1fr}.reading-card>img,.reading-card>.soon-media>img{height:150px}nav a:nth-child(2),nav a:nth-child(5){display:none}.bird{right:-18%;width:65%;top:20%}.hero-copy{top:32px}h1{font-size:30px}.hero{height:215px}}
+
+/* Desktop header: original approved artwork at native resolution, no cut-out or enlargement */
+.exact-hero{height:auto;aspect-ratio:742 / 239;background:#fff0f3 url('assets/hero-exact-reference.png') center center / 100% 100% no-repeat}
+.exact-hero:after{display:none}
+@media(max-width:740px){.exact-hero{height:auto;aspect-ratio:742 / 239;min-height:0;background-size:100% 100%}}
+@media(max-width:430px){.exact-hero{aspect-ratio:742 / 239;min-height:0}}
+</style>
+<style>
+/* The lower blossoms deliberately cross the section boundary. */
+.exact-hero{position:relative;z-index:1}
+.content{position:relative;z-index:2;margin-top:-12px;border-radius:26px 26px 0 0;background:linear-gradient(180deg,rgba(255,250,250,.95) 0%,#fffafb 45%,#fff9fa 100%);overflow:visible;padding-top:32px}
+.content:before{content:"";position:absolute;left:0;right:0;top:-32px;height:70px;background:linear-gradient(180deg,rgba(255,248,250,0),rgba(255,250,250,.82) 55%,#fffafa 100%);pointer-events:none}
+.transition-blossoms{position:absolute;right:-2px;top:-101px;width:43%;height:195px;object-fit:contain;object-position:right top;z-index:3;pointer-events:none}
+.top-blossoms{position:absolute;left:0;top:-22px;width:155px;opacity:.58;pointer-events:none}
+.heading,.grid,.ornament{position:relative;z-index:4}
+.corner{width:150px;opacity:.55}
+.shell:after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 65px rgba(255,227,235,.3);border-radius:22px}
+@media(max-width:740px){.transition-blossoms{top:-65px;height:130px;width:49%}.content{padding-top:27px}.top-blossoms{width:90px}}
+@media(max-width:430px){.transition-blossoms{top:-39px;height:85px;width:49%}.heading{padding-top:7px}}
+</style>
+<style>
+.hero.hero-pastel{background-image:linear-gradient(90deg,rgba(255,251,253,.78) 0%,rgba(255,251,253,.59) 34%,rgba(255,251,253,0) 63%),url("assets/hero-exact-reference.png");background-size:cover;background-position:center 48%}
+.hero.hero-pastel:after{display:none}
+.hero.hero-pastel .hero-copy{top:50px}
+.hero.hero-pastel h1{text-shadow:0 1px 4px #fff9}
+.content{background:linear-gradient(180deg,#fff8fbe8 0%,#fffafb 24%,#fff9fa 100%)}
+@media(max-width:740px){.hero.hero-pastel{background-position:57% center;background-image:linear-gradient(90deg,rgba(255,251,253,.9),rgba(255,251,253,.6) 46%,rgba(255,251,253,.1) 100%),url("assets/hero-exact-reference.png")}}
+</style><style>
+/* Only the bottom decoration changes. The uploaded hero is untouched. */
+.floral-footer{height:94px;position:relative;overflow:hidden;background:transparent;padding:0;margin:0;border:0}
+.floral-footer img{position:absolute;display:block;height:auto;max-width:none;pointer-events:none;object-fit:contain;opacity:.6}
+.floral-footer .footer-left{width:clamp(105px,15%,160px);left:-5px;bottom:-1px}
+.floral-footer .footer-middle{width:clamp(180px,29%,300px);left:50%;bottom:20px;transform:translateX(-50%)}
+.floral-footer .footer-right{width:clamp(115px,17%,180px);right:-5px;bottom:-1px}
+@media(max-width:650px){.floral-footer{height:73px}.floral-footer .footer-left{width:25%;left:-3px}.floral-footer .footer-middle{width:36%;bottom:16px}.floral-footer .footer-right{width:27%;right:-3px}}
+</style><style>
+/* Restored Sakura Japanese logo; other page sections unchanged */
+nav {padding-left:160px; padding-right:12px;}
+nav .site-brand {position:absolute;left:20px;top:3px;width:146px;height:52px;padding:0;display:flex;align-items:center;justify-content:center;background:transparent!important;}
+nav .site-brand img {display:block;width:100%;height:100%;object-fit:contain;}
+@media(max-width:740px){nav{padding-left:112px;gap:1px}nav .site-brand{left:5px;width:103px;height:47px;top:5px}nav a:not(.site-brand){padding:7px 5px}}
+@media(max-width:430px){nav{padding-left:89px}nav .site-brand{width:85px;height:43px;top:7px;left:3px}nav a:not(.site-brand){font-size:9px;padding:6px 3px}}
+
+/* Preview only: homepage background and header. All archive content unchanged. */
+body{background:#FBE6EC url("assets/bg-sakura.jpg") center center / cover fixed no-repeat;}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:rgba(255,255,255,.45);z-index:0;}
+.shell{z-index:1;background:linear-gradient(180deg,rgba(255,255,255,.84),rgba(255,250,252,.87));}
+.shell>nav{background:linear-gradient(180deg,rgba(255,241,247,.88),rgba(255,231,241,.76));border-bottom:1px solid rgba(255,255,255,.55);box-shadow:0 5px 16px rgba(117,81,106,.10);-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px);}
+.shell>nav a:not(.site-brand){font-family:'Poppins','DM Sans',sans-serif;font-weight:500;}
+.shell>nav a:not(.site-brand):hover{background:#fff;color:#B85C83;box-shadow:inset 0 0 0 2px #E99CB8;}
+.shell>nav a.active{color:#d84f74;background:#ffe1e7;box-shadow:none;}
+@media(max-width:740px){body{background-attachment:scroll}}
+
+/* Sakura Japanese pastel-pop refinements: preserve approved artwork and layout */
+.shell{overflow:visible;isolation:isolate}
+.shell>nav{position:sticky;top:0;z-index:1000;border-radius:22px 22px 0 0;min-height:59px}
+.exact-hero{overflow:hidden}
+.reading-card{position:relative;border-radius:27px;border:2px solid rgba(255,255,255,.95);background:linear-gradient(145deg,#fffafd 0%,#fff0f7 100%);box-shadow:0 7px 0 #edc9d9,0 14px 23px rgba(181,109,145,.13),inset 0 2px 0 #fff;padding:19px 18px 18px;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.reading-card:nth-child(2),.reading-card:nth-child(5){background:linear-gradient(145deg,#fbfaff,#f0ebff)}
+.reading-card:nth-child(3),.reading-card:nth-child(6){background:linear-gradient(145deg,#fafffe,#eaf8f2)}
+.reading-card>img,.reading-card>.soon-media>img{border-radius:17px;border:3px solid #fff;box-shadow:0 4px 12px rgba(138,100,125,.13)}
+.reading-card .month{font-family:'Poppins',sans-serif;font-weight:600;letter-spacing:-.4px;color:#d77e9d}
+.reading-card .jp-title{color:#4c4658}
+.level{font-family:'Poppins',sans-serif;font-weight:700;letter-spacing:.1px;background:linear-gradient(160deg,#e7e4ff,#d5e4ff);color:#6868a5;border:2px solid #fff;box-shadow:0 3px 0 #c9c8ef;padding:6px 13px;border-radius:999px}
+.level.warm{background:linear-gradient(160deg,#ffefd4,#ffe0bf);color:#ae7550;box-shadow:0 3px 0 #f0c6a7}
+.arrow{height:38px;width:38px;border-radius:50%;background:linear-gradient(145deg,#ffb5ce,#f18aaf);border:2px solid #fff;box-shadow:0 4px 0 #d8759b,0 6px 12px #d88aaf44;font-size:22px;font-weight:700;transition:transform .2s ease}
+a.reading-card:hover{transform:translateY(-5px);border-color:#fff;box-shadow:0 11px 0 #edc9d9,0 21px 28px rgba(181,109,145,.2),inset 0 2px 0 #fff}
+a.reading-card:hover .arrow{transform:translateX(3px) scale(1.07)}
+a.reading-card:active{transform:translateY(2px);box-shadow:0 3px 0 #edc9d9,0 7px 15px rgba(181,109,145,.14)}
+a.reading-card:focus-visible{outline:3px solid #a788f5;outline-offset:4px}
+.soon{opacity:.78}.soon .arrow{background:#e9dce4;box-shadow:0 3px 0 #d7c4ce}
+@media(max-width:740px){.shell>nav{border-radius:0}.reading-card{padding:13px;border-radius:23px}.reading-card>img,.reading-card>.soon-media>img{border-radius:14px}.arrow{height:35px;width:35px}}
+@media(prefers-reduced-motion:reduce){.reading-card,.arrow{transition:none}}
+</style><style>
+/* Keep the original archive card design, add compact level chips only. */
+.month-reading-card .card-foot{margin-top:17px;display:block}
+.level-chips{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.level-chip{font-family:'Poppins','DM Sans',sans-serif;font-size:11px;font-weight:600;
+ text-decoration:none;color:#6968a4;background:#fff;
+ border:1.5px solid #d9d8fb;border-radius:999px;padding:7px 12px;
+ box-shadow:none;transition:transform .15s,background .15s}
+.level-chip:hover{background:#fff4f8;color:#c24e84;transform:translateY(-2px)}
+.level-chip:focus-visible{outline:3px solid #a788f5;outline-offset:2px}
+.level-chip-2{background:#fff;color:#5c85b4;border-color:#d1e7fa}
+.level-chip-3{background:#fff;color:#a47750;border-color:#f7e0c5}
+.month-reading-card{transition:none!important}
+@media(max-width:740px){.level-chip{padding:7px 10px;font-size:10px}}
+</style><style>.level-chip{background:#fff!important;box-shadow:none!important;border:1.5px solid #d9d8fb!important}.level-chip-2{border-color:#d1e7fa!important}.level-chip-3{border-color:#f7e0c5!important}.level-chip:hover{background:#fff4f8!important}</style><style>
+.month-reading-card img[src*="-thumb-final-clean"]{object-fit:cover!important;object-position:center!important}
+</style><style>
+/* Coming-soon months (October–December) */
+html,body{overflow-x:clip}
+.soon{opacity:1}
+.soon-media{position:relative}
+.soon-media img{filter:grayscale(.35) brightness(1.04);opacity:.7}
+.soon-badge{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#fffdfd;color:#c95a7d;border:1.5px solid #f6c9d6;border-radius:999px;padding:6px 16px;font:700 12px 'Poppins','DM Sans',sans-serif;letter-spacing:.04em;box-shadow:0 4px 12px #d9a8b840;white-space:nowrap}
+.soon .jp-title{color:#a59ca8}
+.level-chip.level-chip-off{background:#f6f3f6!important;color:#b7aeb9;border-color:#ebe5ec!important;cursor:default;pointer-events:none}
+</style></head><body><main class="shell"><nav><a aria-label="Sakura Japanese home" class="site-brand" href="#"><img alt="Sakura Japanese" src="assets/sakura-japanese-logo.png"/></a><a href="#">Home</a><a href="#">Study Materials</a><a class="active" href="#">Reading</a><a href="#">Grammar</a><a href="#">Games</a><a href="#">About</a></nav>
+<section aria-label="Japanese Reading Materials. Read, learn, and explore Japan through simple and natural Japanese. White shima-enaga bird on a cherry blossom branch with Mount Fuji." class="hero exact-hero" role="img"></section>
+<section class="content"><img alt="" class="transition-blossoms" src="assets/sakura-transition.png"/><img alt="" class="top-blossoms" src="assets/sakura-top-left.png"/><header class="heading"><img alt="" src="assets/book-icon-original.png"/><div><h2>Monthly Readings</h2><p>Choose a topic and start reading!</p></div></header><div class="grid"><div class="reading-card month-reading-card"><div class="month">July</div><img alt="July Reading illustration" src="assets/july-thumbnail.jpg"/><div class="jp-title">花火大会</div><div class="kana">はなびたいかい</div><div class="card-foot"><div aria-label="July reading levels" class="level-chips"><a class="level-chip level-chip-1" href="2026-07/level1.html">Level 1</a><a class="level-chip level-chip-2" href="2026-07/level2.html">Level 2</a><a class="level-chip level-chip-3" href="2026-07/level3.html">Level 3</a></div></div></div><div class="reading-card month-reading-card"><div class="month">August</div>
+<img alt="August Reading illustration" src="assets/august-thumbnail.jpg"/><div class="jp-title">お墓参り</div><div class="kana">おはかまいり</div><div class="card-foot"><div aria-label="August reading levels" class="level-chips"><a class="level-chip level-chip-1" href="2026-08/level1.html">Level 1</a><a class="level-chip level-chip-2" href="2026-08/level2.html">Level 2</a><a class="level-chip level-chip-3" href="2026-08/level3.html">Level 3</a></div></div></div><div class="reading-card month-reading-card"><div class="month">September</div><img alt="September Reading illustration" src="assets/september-reading-thumb.jpg"/><div class="jp-title">高山の秋祭り</div><div class="kana">たかやまの あきまつり</div><div class="card-foot"><div aria-label="September reading levels" class="level-chips"><a class="level-chip level-chip-1" href="2026-09/level1.html">Level 1</a><a class="level-chip level-chip-2" href="2026-09/level2.html">Level 2</a><a class="level-chip level-chip-3" href="2026-09/level3.html">Level 3</a></div></div></div><div aria-label="October reading: coming soon" class="reading-card soon"><div class="month">October</div><div class="soon-media"><img alt="" src="assets/october-preview.png"/><span class="soon-badge">Coming soon</span></div><div class="jp-title">じゅんびちゅう</div><div class="kana">Stay tuned!</div><div class="card-foot"><div class="level-chips" aria-hidden="true"><span class="level-chip level-chip-off">Level 1</span><span class="level-chip level-chip-off">Level 2</span><span class="level-chip level-chip-off">Level 3</span></div></div></div><div aria-label="November reading: coming soon" class="reading-card soon"><div class="month">November</div><div class="soon-media"><img alt="" src="assets/november-preview.png"/><span class="soon-badge">Coming soon</span></div><div class="jp-title">じゅんびちゅう</div><div class="kana">Stay tuned!</div><div class="card-foot"><div class="level-chips" aria-hidden="true"><span class="level-chip level-chip-off">Level 1</span><span class="level-chip level-chip-off">Level 2</span><span class="level-chip level-chip-off">Level 3</span></div></div></div><div aria-label="December reading: coming soon" class="reading-card soon"><div class="month">December</div><div class="soon-media"><img alt="" src="assets/december-preview.png"/><span class="soon-badge">Coming soon</span></div><div class="jp-title">じゅんびちゅう</div><div class="kana">Stay tuned!</div><div class="card-foot"><div class="level-chips" aria-hidden="true"><span class="level-chip level-chip-off">Level 1</span><span class="level-chip level-chip-off">Level 2</span><span class="level-chip level-chip-off">Level 3</span></div></div></div></div></section><footer class="floral-footer"><img alt="" aria-hidden="true" class="footer-left" src="assets/footer-left.png"/><img alt="" aria-hidden="true" class="footer-middle" src="assets/footer-middle.png"/><img alt="" aria-hidden="true" class="footer-right" src="assets/footer-right.png"/></footer></main></body></html>

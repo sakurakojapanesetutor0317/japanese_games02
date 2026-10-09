@@ -1,0 +1,207 @@
+/* =========================================================
+   Sakura Japanese — Monthly Reading pages (shared styles)
+   One stylesheet for every month and level. It reproduces the
+   final look of the September pages without the stacked
+   overrides. Page files contain content only.
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap");
+
+:root{
+  --pink:#dc7fa3;
+  --rose:#b9668d;
+  --ink:#414052;
+  --muted:#92909b;
+  --border:#efd5e2;
+  --nav-h:59px;
+  --font:"DM Sans","Noto Sans JP",sans-serif;
+  --font-jp:"Noto Sans JP",sans-serif;
+  --font-nav:"Poppins","DM Sans",sans-serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);font-family:var(--font);
+  background:#fbe6ec url("../bg-sakura.jpg") center/cover fixed no-repeat;
+}
+body::before{content:"";position:fixed;inset:0;background:rgba(255,255,255,.45);pointer-events:none}
+[hidden]{display:none !important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+img{max-width:100%}
+:focus-visible{outline:3px solid #aaa7ec;outline-offset:2px}
+
+/* ---------- page frame ---------- */
+.site-frame{
+  position:relative;max-width:1100px;margin:16px auto 24px;border-radius:24px;
+  background:linear-gradient(180deg,#fff7f9,#fffdfd 35%,#fff9fa);
+  box-shadow:0 22px 65px #dca6b640;border:1px solid #ffffffcf;
+}
+
+/* ---------- navigation ---------- */
+.site-nav{
+  position:sticky;top:0;z-index:100;height:var(--nav-h);
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  padding:0 12px 0 160px;border-radius:24px 24px 0 0;
+  background:linear-gradient(180deg,rgba(255,241,247,.96),rgba(255,231,241,.92));
+  box-shadow:0 5px 16px rgba(117,81,106,.1);border-bottom:1px solid #fff;
+}
+.site-nav a{font-family:var(--font-nav);font-size:12px;font-weight:500;color:#54515c;text-decoration:none;padding:8px 12px;border-radius:24px;white-space:nowrap}
+.site-nav a:hover{background:#fff0f3}
+.site-nav a.active{background:#ffe1e7;color:#d84f74}
+.site-nav .site-brand{position:absolute;left:16px;top:3px;width:146px;height:52px;padding:0;display:flex;align-items:center;justify-content:center}
+.site-nav .site-brand:hover{background:none}
+.site-nav .site-brand img{display:block;width:100%;height:100%;object-fit:contain}
+
+/* ---------- hero artwork ---------- */
+/* The month's artwork is shown whole, at its own aspect ratio; the title is part of the artwork. */
+.site-hero{width:90%;max-width:990px;margin:24px auto 0;border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 8px 25px rgba(195,143,164,.14)}
+.site-hero img{display:block;width:100%;height:auto}
+
+/* ---------- content ---------- */
+.site-content{position:relative;z-index:1;padding:32px 36px 38px;border-radius:27px 27px 0 0;margin-top:-6px;background:linear-gradient(#fffcfcf4,#fffdfdf5)}
+.study-main{max-width:850px;margin:0 auto}
+
+/* control panel */
+.control-panel{border:1px solid #f0dbe8;border-radius:15px;background:linear-gradient(135deg,#fffbfd,#f8f2fa);padding:17px 19px;margin-bottom:27px;box-shadow:0 2px 6px #e9cbd019}
+.control-row{display:flex;align-items:center;gap:12px;min-height:32px;font-size:12px;color:#5c5964}
+.control-row + .control-row{margin-top:7px}
+.control-icon{font-size:18px;color:#d984a7;width:24px;text-align:center}
+.control-row label{flex:1;cursor:pointer}
+.switch{appearance:none;width:34px;height:19px;margin:0;background:#dfdbe5;border-radius:99px;position:relative;cursor:pointer;transition:background .2s}
+.switch::after{content:"";position:absolute;left:3px;top:3px;width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:0 1px 2px #0002;transition:transform .2s}
+.switch:checked{background:#7884f7}
+.switch:checked::after{transform:translateX(15px)}
+.display-title{font-size:11px;color:#817b87;margin:15px 0 8px}
+.mode-switch{display:flex;gap:5px;padding:4px;border-radius:12px;background:#fff;border:1px solid #f8dce4}
+.mode-switch button{flex:1;min-width:0;border:0;border-radius:9px;background:transparent;color:#857d8a;padding:8px 4px;cursor:pointer;font:600 11px var(--font-jp)}
+.mode-switch button[aria-pressed="true"]{background:#f1d8e9;color:#975477;box-shadow:0 2px 7px #edb2c57d}
+
+/* reading text */
+.para + .para{margin-top:22px}
+.sent{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 7px;margin-bottom:20px;border-radius:9px;line-height:2.2}
+.sent .jp{font-size:16px;line-height:2.25;letter-spacing:.01em;min-width:0}
+.sent .tools{display:flex;align-items:center;gap:4px}
+.tools button{background:#fff1f6;border:1px solid #eaa4bd;color:#ac4774;border-radius:8px;min-width:27px;height:27px;cursor:pointer}
+.sent .en{display:none;grid-column:1/-1;background:#fff5f8;border-left:3px solid #f4a7bd;color:#846176;padding:9px 12px;border-radius:3px 9px 9px 3px;font-size:13px;line-height:2}
+.tr-all .sent .en,.sent.show .en{display:block}
+.w{cursor:pointer;border-bottom:1px dotted #e6a1b4;border-radius:3px}
+.w:hover,.w:focus-visible,.w.active{background:#ffe3eb;color:#b74468;outline:none}
+.new-word{color:#d96688}
+
+/* "New Words" list (kept from the original lesson files) */
+.vocabulary-card{border:1px solid #f8dce5;border-radius:17px;padding:16px 22px;background:#fff8fa;margin:0 0 26px}
+.vocabulary-card .title-line{margin:0 0 8px;font-size:16px;font-weight:700;color:#c85c7f}
+.vocabulary-card p{margin:0;font-size:14px;line-height:2.1}
+.vocabulary-card .word{color:#cf6082;font-weight:700}
+ruby rt{font-size:.53em;line-height:1.1;color:#6d6977}
+.script-kanji rt{display:none}
+
+/* ---------- grammar ---------- */
+.secondary-content{margin-top:42px;border-top:1px solid #fae4e9;padding-top:28px}
+.grammar-area{margin:24px 0 0}
+.grammar-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}
+.grammar-head h2{margin:0;font-size:22px;color:#484355}
+.grammar-collapse{border:0;background:none;color:#9a8294;cursor:pointer;font-size:13px}
+.grammar-cards{display:grid;gap:13px}
+.grammar-card{background:linear-gradient(130deg,#fffafd,#f9f5fd);border:1px solid #eedeea;border-radius:17px;padding:17px 20px;box-shadow:0 4px 12px #d7bfd31f;line-height:1.9}
+.grammar-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.grammar-top strong{font-size:17px}
+.grammar-badge{border-radius:99px;background:#e2e6ff;color:#686ba5;padding:5px 11px;font-size:12px;font-weight:700}
+.grammar-desc{margin:8px 0 10px;font-size:13px;color:#6f6878}
+.grammar-example{margin:0 0 12px;font-size:14px;line-height:1.8;color:#837b89}
+.grammar-link{display:inline-flex;color:#bb6e98;text-decoration:none;font-size:12px;font-weight:700}
+.grammar-link:hover{text-decoration:underline}
+
+/* ---------- reading quiz ---------- */
+.quiz-wrap{margin-top:60px;padding-top:18px;border-top:1px solid #f3dce6}
+.quiz-heading{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.quiz-heading h2{font-size:22px;color:#484355}
+.quiz-count{font-size:13px;color:#a38a9d}
+.quiz-question{font-size:18px;line-height:2.1;margin:10px 0 18px}
+.quiz-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.quiz-option{display:flex;align-items:center;gap:11px;text-align:left;padding:15px 16px;border:1px solid #f0dfe9;border-radius:13px;background:#fbf5fa;color:#454052;cursor:pointer;font:inherit;font-size:15px;min-height:64px}
+.quiz-option .letter{border:1px solid #d8b9cc;width:31px;height:31px;border-radius:50%;display:grid;place-items:center;flex:none;font-weight:700}
+.quiz-option[aria-pressed="true"]{background:#f3dfed;border-color:#d78caf;box-shadow:0 0 0 2px #edc6dc inset}
+.quiz-option:disabled{cursor:default}
+.quiz-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px}
+.quiz-btn{background:#de8cb1;color:#fff;border:0;border-radius:99px;padding:11px 19px;font:inherit;font-weight:700;cursor:pointer}
+.quiz-btn:disabled{opacity:.4;cursor:default}
+.quiz-note{min-height:1.6em;margin-top:10px;font-size:13px;color:#b0577f}
+.quiz-results{margin-top:20px;padding:18px;background:#f8f1fa;border:1px solid #e9d8e8;border-radius:15px}
+.quiz-results h3{margin:0 0 6px}
+.quiz-review{margin:13px 0;padding:13px;background:#fff;border-radius:11px;font-size:14px;line-height:1.8}
+.quiz-review.good{border-left:4px solid #91c4b6}
+.quiz-review.bad{border-left:4px solid #d998b1}
+.quiz-review .verdict{font-weight:700}
+
+/* ---------- let's talk ---------- */
+.section-title{font-size:21px;font-weight:700;color:#9d6487;margin:0 0 8px}
+.talk-panel{background:#fff6fa;border:1px solid #f6dce7;border-radius:16px;padding:19px 22px;margin-top:22px}
+.talk-panel .prompt{font-size:14px;line-height:2}
+.talk-panel .input-box{height:32px;border-radius:8px;background:#fff;border:1px solid #f3d7e2;margin:7px 0 12px}
+
+/* ---------- level navigation & footer ---------- */
+.level-navigation{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:36px}
+.level-navigation a{color:#d85275;background:#fff2f5;border:1px solid #ffc3d2;border-radius:999px;padding:11px 20px;text-decoration:none;font-size:13px;min-width:130px;text-align:center}
+.level-navigation a:hover{background:#ffe4eb}
+.level-navigation .placeholder{visibility:hidden}
+.site-footer{height:95px;position:relative;pointer-events:none;overflow:hidden;border-radius:0 0 24px 24px}
+.site-footer img{position:absolute;bottom:0;object-fit:contain;max-height:95px;opacity:.6}
+.site-footer img:nth-child(1){left:0;width:145px}
+.site-footer img:nth-child(2){left:50%;transform:translateX(-50%);width:230px;bottom:15px}
+.site-footer img:nth-child(3){right:0;width:155px}
+
+/* ---------- vocabulary pop-up ---------- */
+.pop{position:absolute;z-index:150;background:#fffdfd;width:320px;max-width:calc(100vw - 24px);border-radius:16px;padding:20px 21px;border:1px solid #f2d6e2;box-shadow:0 13px 32px #ba94a544}
+.pop-x{position:absolute;right:10px;top:8px;background:none;border:0;color:#b2a4aa;font-size:20px;cursor:pointer}
+.pop-head{display:flex;align-items:center;gap:9px;padding-right:20px}
+.pop-word{font-size:23px;line-height:1.3;font-weight:700;color:#343746}
+.pop-say{margin-left:auto;border:0;background:#fae6ef;color:#d877a0;border-radius:50%;width:36px;height:36px;cursor:pointer}
+.pop-read{color:#d877a0;font-size:15px;font-weight:700;margin:5px 0 9px}
+.pop-pos{display:inline-block;padding:4px 13px;border-radius:999px;background:#f9eaf2;color:#98627d;font-size:12px;font-weight:700;margin-bottom:8px}
+.pop-mean{font-size:17px;line-height:1.5;margin:6px 0 10px;color:#343746}
+.pop-form,.pop-note,.pop-ex-en{font-size:12px;color:#88828c;line-height:1.7}
+.pop-ex{margin-top:14px;padding-top:13px;border-top:1px solid #f1e4e9}
+.pop-ex-lbl{font-size:10px;color:#a08c9b;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.pop-ex-jp{font-size:14px;line-height:1.9}
+.pop-bg{display:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:750px){
+  .site-frame{margin:0;border-radius:0}
+  .site-nav{gap:2px;padding-left:108px;justify-content:space-around;border-radius:0}
+  .site-nav a{font-size:10px;padding:7px 5px}
+  .site-nav .site-brand{width:100px;height:45px;left:5px;top:5px}
+  .site-content{padding:24px 20px}
+  .sent .jp{font-size:15px}
+  .quiz-wrap{margin-top:48px}
+  .site-footer{border-radius:0}
+}
+@media (max-width:640px){
+  .pop{position:fixed;left:8px !important;right:8px;bottom:8px;top:auto !important;width:auto;max-width:none;max-height:70vh;overflow:auto}
+  .pop-bg:not([hidden]){display:block;position:fixed;inset:0;background:#46354140;z-index:140}
+}
+@media (max-width:600px){
+  .site-hero{width:94%;margin-top:12px;border-radius:12px}
+  .quiz-options{grid-template-columns:1fr}
+  .grammar-card{padding:15px}
+}
+@media (max-width:440px){
+  .site-content{padding:20px 16px}
+  .level-navigation a{min-width:0;padding:10px 13px}
+  .mode-switch button{font-size:10px}
+}
+@media (max-width:430px){
+  .site-nav{padding-left:85px}
+  .site-nav .site-brand{width:80px;height:40px}
+  .site-nav a:nth-child(2),.site-nav a:nth-child(5){display:none}
+  .site-nav a{font-size:9px;padding:6px 3px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none !important}}
+@media print{
+  body{background:#fff}
+  body::before,.site-nav,.site-hero,.site-footer,.level-navigation,.control-panel,.pop,.pop-bg{display:none !important}
+  .site-frame{box-shadow:none;margin:0}
+  .site-content{padding:0}
+}
