@@ -1,13 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
 <title>Sakura Japanese</title>
-<meta name="description" content="Sakura Japanese — learn Japanese at your own pace.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap">
+<meta content="Sakura Japanese — learn Japanese at your own pace." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Noto+Sans+JP:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 /* Layout: white header → sky-blue window hero with sakura and the shima-enaga → two study entrances → Learning Library → footer.
    Light-only by design. Illustrations live in assets/ so they can be swapped later. */
@@ -349,100 +350,131 @@ footer .foot-in { min-height:0; padding-block:13px; display:flex; justify-conten
 .footer-message { margin:0; text-align:center; font-family:"Poppins",sans-serif; font-weight:500; font-size:.92rem; line-height:1.5; letter-spacing:.005em; color:var(--ink); }
 .footer-message span { color:#D783A4; }
 @media(max-width:780px){ footer .foot-in{padding-block:12px} .footer-message{font-size:.85rem} }
-</style>
-</head>
-<body>
 
-<div class="page-bg" aria-hidden="true"></div>
-<div class="petals" id="petals" aria-hidden="true"></div>
+/* Hero framing adjustment only: retain the exact original pastel image. */
+@media (min-width:781px) {
+  .hero { aspect-ratio: 2.65 / 1 !important; }
+  .hero .scene > img { object-fit: cover; object-position: center 68%; }
+}
+@media (max-width:780px) {
+  .hero { height: 310px !important; }
+  .hero .scene > img { object-fit: cover; object-position: 51% 70%; }
+}
+</style>
+<style>
+/* Visual-only pastel game-inspired comparison: original content, links and structure preserved */
+:root{--ink:#54485f;--muted:#8d8199;--pink:#df739c}
+body{background:#fce8ef}
+.page-bg{background:linear-gradient(rgba(255,250,253,.44),rgba(255,250,253,.44)),url('assets/bg-sakura.jpg') center/cover no-repeat}
+.shell{background:rgba(255,252,253,.69);box-shadow:0 0 36px rgba(213,154,183,.12)}
+.site-head{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(255,249,251,.97),rgba(252,232,239,.94));border-bottom:1px solid #fff;box-shadow:0 5px 15px rgba(188,128,157,.13)}
+.hero{background:#fceaf2;isolation:isolate;border-radius:26px!important;box-shadow:0 9px 20px rgba(169,128,165,.12),0 2px 0 rgba(255,255,255,.95) inset;overflow:hidden}
+.hero .scene{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;transform:none}
+.hero .scene>img{width:100%;height:100%;object-fit:cover;object-position:center 55%}
+.hero:after{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,rgba(255,248,253,.76) 0%,rgba(255,248,253,.44) 33%,transparent 64%);pointer-events:none}
+.hero-in{z-index:1;justify-content:flex-start}
+.hero-text{margin-left:4%!important;margin-top:0!important;text-shadow:none}
+.hero h1 .hero-tea-wordmark{width:clamp(155px,21cqw,225px)}
+.hero p{font-weight:500;color:#615368;text-shadow:0 1px 5px white}
+.sec h2{font-weight:600;color:#5e4d69}
+.entry,.book{border:2px solid rgba(255,255,255,.94)!important;border-radius:30px!important;box-shadow:0 7px 0 rgba(206,171,196,.35),0 12px 22px rgba(174,140,169,.11),inset 0 2px 0 rgba(255,255,255,.9)!important;transition:transform .2s,box-shadow .2s,filter .2s;overflow:visible}
+.entry{--bg:#fff0f5;--bd:#f7d6e4;--btn:#f49ab9;--c:#c9638c;background:linear-gradient(155deg,#fff9fc,var(--bg))}
+.entry.jlpt{--bg:#ede8ff;--bd:#dcd2ff;--btn:#c8baf7;--c:#7363bb;background:linear-gradient(155deg,#faf8ff,var(--bg))}
+.book{background:linear-gradient(155deg,#fff8fb,var(--bg));}
+.book.lav{background:linear-gradient(155deg,#fbfaff,#e8e3ff)}
+.book.blue{background:linear-gradient(155deg,#f9fdff,#ddeeff)}
+.book.yellow{background:linear-gradient(155deg,#fffdfa,#fff0cc)}
+.entry:hover,.entry.jlpt:hover,.book:hover,.book.lav:hover,.book.blue:hover,.book.yellow:hover{background:linear-gradient(155deg,#fff,var(--bg));transform:translateY(-5px);box-shadow:0 11px 0 rgba(206,171,196,.3),0 18px 28px rgba(174,140,169,.17),inset 0 2px 0 #fff!important;filter:saturate(1.04)}
+.entry:active,.book:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(206,171,196,.3),0 6px 10px rgba(174,140,169,.1)!important}
+.arrow{border:2px solid rgba(255,255,255,.9);box-shadow:0 4px 0 rgba(195,120,153,.2),inset 0 2px 0 rgba(255,255,255,.48);background:var(--btn);color:#fff}
+.levels a,.split a{border:1px solid rgba(255,255,255,.8);box-shadow:0 3px 0 rgba(135,111,182,.14);border-radius:999px}
+.menu a{border-radius:999px}
+@media(min-width:781px){.hero{width:92%;margin:24px auto 0;aspect-ratio:3.75/1}}
+@media(max-width:780px){.hero{height:245px;margin:10px 12px 0;border-radius:19px!important}.hero .scene{left:0;right:0;width:100%;transform:none}.hero .scene>img{object-position:62% center}.hero-text{margin-left:16px!important}.hero:after{background:linear-gradient(90deg,rgba(255,248,253,.83),rgba(255,248,253,.32) 75%,transparent)}.entry,.book{border-radius:20px!important}.arrow{box-shadow:none}}
+</style></head>
+<body>
+<div aria-hidden="true" class="page-bg"></div>
+<div aria-hidden="true" class="petals" id="petals"></div>
 <div class="shell">
 <header class="site-head">
-  <div class="wrap head-in">
-    
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
-    <nav class="menu" id="menu" aria-label="Main">
-      <a href="#top" aria-current="page">Home</a>
-      <a href="#" data-draft="Minna no Nihongo">Minna no Nihongo</a>
-      <a href="#" data-draft="JLPT">JLPT</a>
-      <a href="#" data-draft="Grammar Database">Grammar</a>
-      <a href="https://sakurakojapanesetutor0317.github.io/wordgame/index.html" target="_blank" rel="noopener">Games</a>
-      <a href="https://sakurakojapanesetutor0317.github.io/reading/index.html" target="_blank" rel="noopener">Reading</a>
-    </nav>
-    <a class="search" href="#" data-draft="Search" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a>
-  </div>
+<div class="wrap head-in">
+<button aria-controls="menu" aria-expanded="false" aria-label="Open menu" class="menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
+<nav aria-label="Main" class="menu" id="menu">
+<a aria-current="page" href="#top">Home</a>
+<a data-draft="Minna no Nihongo" href="#">Minna no Nihongo</a>
+<a data-draft="JLPT" href="#">JLPT</a>
+<a data-draft="Grammar Database" href="#">Grammar</a>
+<a href="https://sakurakojapanesetutor0317.github.io/wordgame/index.html" rel="noopener" target="_blank">Games</a>
+<a href="https://sakurakojapanesetutor0317.github.io/reading/index.html" rel="noopener" target="_blank">Reading</a>
+</nav>
+<a aria-label="Search" class="search" data-draft="Search" href="#"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+</div>
 </header>
-
-<section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="scene" aria-hidden="true">
-    <img src="assets/hero-scene.png" alt="">
-    <img class="bird" src="assets/mascot-opaque-body.png" alt="">
-  </div>
-  <div class="wrap hero-in">
-    <div class="hero-text">
-      <h1 id="hero-title"><img class="hero-tea-wordmark" src="assets/tea-logo-transparent.png" alt="Sakura Japanese"></h1>
-      <p>Learn Japanese at your own pace.</p>
-    </div>
-  </div>
-</section>
-
-<main class="wrap">
-  <section class="sec" aria-labelledby="study-title" style="position:relative">
-    <h2 id="study-title">What would you like to study?</h2>
-    <div class="study">
-      <a class="entry" href="#" data-draft="Minna no Nihongo lessons">
-        <img src="assets/icons/lessons.png" alt="">
-        <div><h3>Minna no Nihongo</h3><p class="jp">みんなの<ruby>日本語<rt>にほんご</rt></ruby></p></div>
-        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <div class="entry jlpt">
-        <img src="assets/icons/jlpt.png" alt="">
-        <div><h3><a class="stretch" href="#" data-draft="JLPT Study">JLPT Study</a></h3><p class="jp"><ruby>日本語<rt>にほんご</rt></ruby><ruby>能力<rt>のうりょく</rt></ruby><ruby>試験<rt>しけん</rt></ruby></p>
-          <nav class="levels" aria-label="JLPT levels"><a href="#" data-draft="JLPT N5">N5</a><a href="#" data-draft="JLPT N4">N4</a><a href="#" data-draft="JLPT N3">N3</a><a href="#" data-draft="JLPT N2">N2</a><a href="#" data-draft="JLPT N1">N1</a></nav></div>
-        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="lib-title">
-    <h2 id="lib-title">Learning Library</h2>
-    <div class="lib">
-      <a class="book" href="https://sakurakojapanesetutor0317.github.io/kana-renshu/" target="_blank" rel="noopener">
-        <img src="assets/icons/kana.png" alt="">
-        <div><h3>Kana &amp; Kanji</h3><p class="jp">ひらがな・カタカナ・<ruby>漢字<rt>かんじ</rt></ruby></p></div>
-        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="book lav" href="#" data-draft="Grammar Database">
-        <img src="assets/icons/grammar.png" alt="">
-        <div><h3>Grammar Database</h3><p class="jp"><ruby>文法<rt>ぶんぽう</rt></ruby>データベース</p></div>
-        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <div class="book blue">
-        <img src="assets/icons/games.png" alt="">
-        <div><h3>Games &amp; Flashcards</h3><p class="jp">ゲーム・フラッシュカード</p></div>
-        <div class="split">
-          <a href="https://sakurakojapanesetutor0317.github.io/wordgame/index.html" target="_blank" rel="noopener">Games <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a href="https://sakurakojapanesetutor0317.github.io/flashcards/" target="_blank" rel="noopener">Flashcards <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-      </div>
-      <a class="book yellow" href="https://sakurakojapanesetutor0317.github.io/reading/index.html" target="_blank" rel="noopener">
-        <img src="assets/icons/reading.png" alt="">
-        <div><h3>Reading Materials</h3><p class="jp"><ruby>読解<rt>どっかい</rt></ruby><ruby>教材<rt>きょうざい</rt></ruby></p></div>
-        <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap foot-in">
-    <p class="footer-message">Made with <span aria-label="love">♥</span> for Japanese Learners</p>
-  </div>
-</footer>
+<section aria-labelledby="hero-title" class="hero" id="top">
+<div aria-hidden="true" class="scene">
+<img alt="" src="assets/hero-pastel.png"/>
 
 </div>
-
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
+<div class="wrap hero-in">
+<div class="hero-text">
+<h1 id="hero-title"><img alt="Sakura Japanese" class="hero-tea-wordmark" src="assets/tea-logo-transparent.png"/></h1>
+<p>Learn Japanese at your own pace.</p>
+</div>
+</div>
+</section>
+<main class="wrap">
+<section aria-labelledby="study-title" class="sec" style="position:relative">
+<h2 id="study-title">What would you like to study?</h2>
+<div class="study">
+<a class="entry" data-draft="Minna no Nihongo lessons" href="#">
+<img alt="" src="https://sakurakojapanesetutor0317.github.io/japanese_games02/test/assets/icons/lessons.png"/>
+<div><h3>Minna no Nihongo</h3><p class="jp">みんなの<ruby>日本語<rt>にほんご</rt></ruby></p></div>
+<span aria-hidden="true" class="arrow"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+<div class="entry jlpt">
+<img alt="" src="https://sakurakojapanesetutor0317.github.io/japanese_games02/test/assets/icons/jlpt.png"/>
+<div><h3><a class="stretch" data-draft="JLPT Study" href="#">JLPT Study</a></h3><p class="jp"><ruby>日本語<rt>にほんご</rt></ruby><ruby>能力<rt>のうりょく</rt></ruby><ruby>試験<rt>しけん</rt></ruby></p>
+<nav aria-label="JLPT levels" class="levels"><a data-draft="JLPT N5" href="#">N5</a><a data-draft="JLPT N4" href="#">N4</a><a data-draft="JLPT N3" href="#">N3</a><a data-draft="JLPT N2" href="#">N2</a><a data-draft="JLPT N1" href="#">N1</a></nav></div>
+<span aria-hidden="true" class="arrow"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</div>
+</div>
+</section>
+<section aria-labelledby="lib-title" class="sec">
+<h2 id="lib-title">Learning Library</h2>
+<div class="lib">
+<a class="book" href="https://sakurakojapanesetutor0317.github.io/kana-renshu/" rel="noopener" target="_blank">
+<img alt="" src="https://sakurakojapanesetutor0317.github.io/japanese_games02/test/assets/icons/kana.png"/>
+<div><h3>Kana &amp; Kanji</h3><p class="jp">ひらがな・カタカナ・<ruby>漢字<rt>かんじ</rt></ruby></p></div>
+<span aria-hidden="true" class="arrow"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+<a class="book lav" data-draft="Grammar Database" href="#">
+<img alt="" src="https://sakurakojapanesetutor0317.github.io/japanese_games02/test/assets/icons/grammar.png"/>
+<div><h3>Grammar Database</h3><p class="jp"><ruby>文法<rt>ぶんぽう</rt></ruby>データベース</p></div>
+<span aria-hidden="true" class="arrow"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+<div class="book blue">
+<img alt="" src="https://sakurakojapanesetutor0317.github.io/japanese_games02/test/assets/icons/games.png"/>
+<div><h3>Games &amp; Flashcards</h3><p class="jp">ゲーム・フラッシュカード</p></div>
+<div class="split">
+<a href="https://sakurakojapanesetutor0317.github.io/wordgame/index.html" rel="noopener" target="_blank">Games <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a href="https://sakurakojapanesetutor0317.github.io/flashcards/" rel="noopener" target="_blank">Flashcards <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+<a class="book yellow" href="https://sakurakojapanesetutor0317.github.io/reading/index.html" rel="noopener" target="_blank">
+<img alt="" src="https://sakurakojapanesetutor0317.github.io/japanese_games02/test/assets/icons/reading.png"/>
+<div><h3>Reading Materials</h3><p class="jp"><ruby>読解<rt>どっかい</rt></ruby><ruby>教材<rt>きょうざい</rt></ruby></p></div>
+<span aria-hidden="true" class="arrow"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a>
+</div>
+</section>
+</main>
+<footer>
+<div class="wrap foot-in">
+<p class="footer-message">Made with <span aria-label="love">♥</span> for Japanese Learners</p>
+</div>
+</footer>
+</div>
+<div aria-live="polite" class="toast" id="toast" role="status"></div>
 <script>
 (function(){
   var btn = document.getElementById("menuBtn"), menu = document.getElementById("menu");
@@ -505,3 +537,4 @@ p.style.setProperty("--o", rnd(.80, 1.0).toFixed(2));
 </script>
 </body>
 </html>
+
