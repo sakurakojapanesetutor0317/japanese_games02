@@ -23,3 +23,5 @@
 .sj-unified .site-head .menu.open{display:flex!important}
 .sj-unified .site-head .menu a{font-size:.94rem!important;padding:10px 12px!important}
 }
+
+.sj-unified .site-head .search svg{width:22px!important;height:22px!important;max-width:22px!important;max-height:22px!important}
