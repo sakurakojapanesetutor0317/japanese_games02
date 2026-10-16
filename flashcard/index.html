@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japanese Flashcards | Sakura Japanese</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ---------- colours ---------- */
+:root{
+  --text-primary:#34345B;
+  --text-secondary:#7F86A6;
+  --card-bg:#FFFFFF;
+}
+.category-minna     {--category-bg:#FFF0F5;--category-border:#FAD6E5;--category-accent:#EC4899}
+.category-verbs     {--category-bg:#EFF6FF;--category-border:#DBEAFF;--category-accent:#60A5FA}
+.category-grammar   {--category-bg:#F5F3FF;--category-border:#E9D5FF;--category-accent:#A78BFA}
+.category-simulation{--category-bg:#ECFDF5;--category-border:#D1FAE5;--category-accent:#34D399}
+.category-vocabulary{--category-bg:#F4FAE9;--category-border:#DCEEBB;--category-accent:#A9D94E}
+
+/* ---------- base ---------- */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:clip}
+body{font-family:"Poppins","Noto Sans JP",sans-serif;color:var(--text-primary);line-height:1.5;background:#fdf7f9}
+
+/* ---------- page background + centre column (same as the Reading page) ----------
+   The sakura photo is its own position:fixed layer, so it stays still on PC and phones
+   while the page scrolls normally; only the frosted centre column moves over it. */
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.55)),url("https://sakurakojapanesetutor0317.github.io/top/assets/bg-sakura.jpg") center / cover no-repeat}
+.shell{position:relative;z-index:1;isolation:isolate;max-width:1100px;margin:0 auto 28px;border-radius:0 0 23px 23px;
+  background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(14px) saturate(1.05);backdrop-filter:blur(14px) saturate(1.05);
+  border:1px solid rgba(255,255,255,.9);border-top:0;box-shadow:0 18px 50px rgba(200,150,170,.14)}
+.shell::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:22px;box-shadow:inset 0 0 60px rgba(255,255,255,.35)}
+@media (min-width:1001px){ .shell{width:76%;max-width:1080px} }
+@media (min-width:781px) and (max-width:1000px){ .shell{width:90%;max-width:1080px} }
+@media (max-width:780px){ .shell{width:100%;margin:0 auto;border-radius:0;border-left:0;border-right:0} }
+img{max-width:100%}
+
+/* ---------- site header (identical block in index and reading pages) ---------- */
+.site-head{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,rgba(255,249,251,.97),rgba(252,232,239,.94));border-bottom:1px solid #fff;border-radius:0;box-shadow:0 5px 15px rgba(188,128,157,.13);-webkit-backdrop-filter:blur(9px);backdrop-filter:blur(9px)}
+.site-head .head-in{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px;margin:0 auto;padding-inline:clamp(20px,3.2%,40px)}
+.site-head .header-brand{display:flex;align-items:center;flex:0 0 auto;min-width:0;text-decoration:none}
+.site-head .header-brand img{display:block;width:clamp(118px,16vw,174px);height:auto;max-height:58px;object-fit:contain}
+.site-head .menu{display:flex;align-items:center;gap:6px;margin-left:auto}
+.site-head .menu a{position:relative;display:block;padding:8px 12px;border-radius:999px;font-family:"Poppins",sans-serif;font-size:.92rem;font-weight:500;line-height:1.6;letter-spacing:.005em;color:#54485f;text-decoration:none;white-space:nowrap;transition:background-color .22s ease,color .22s ease}
+.site-head .menu a[aria-current="page"]{color:#df739c;font-weight:600}
+.site-head .menu a[aria-current="page"]::after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:2px;border-radius:2px;background:#df739c}
+.site-head .menu a:hover{background:#fff;color:#B85C83;box-shadow:inset 0 0 0 2px #E99CB8}
+.site-head .search{display:grid;place-items:center;flex:0 0 auto;width:40px;height:40px;border-radius:12px;color:#54485f;text-decoration:none}
+.site-head .search svg{width:22px;height:22px}
+.site-head .search:hover{color:#df739c}
+.site-head .menu-btn{display:none;width:42px;height:42px;border:none;background:none;cursor:pointer;padding:9px;border-radius:12px}
+.site-head .menu-btn span{display:block;height:2px;margin:5px 0;border-radius:2px;background:#54485f}
+.site-head :focus-visible{outline:3px solid #6FA3E6;outline-offset:3px}
+@media (max-width:780px){
+  .site-head .head-in{gap:8px}
+  .site-head .header-brand img{width:clamp(116px,35vw,152px);max-height:54px}
+  .site-head .menu-btn{display:block;order:3;margin-left:auto;flex:0 0 auto}
+  .site-head .search{display:none}
+  .site-head .menu{display:none;position:absolute;right:12px;top:58px;flex-direction:column;align-items:stretch;gap:0;min-width:210px;padding:8px;border-radius:18px;background:#fff;border:1px solid #EEEAF4}
+  .site-head .menu.open{display:flex}
+  .site-head .menu a{padding:12px 14px}
+  .site-head .menu a[aria-current="page"]::after{display:none}
+}
+
+
+/* ---------- hero (image already contains the title text) ---------- */
+.page{position:relative;z-index:2;padding:24px 4% 0}
+@media (max-width:780px){ .page{padding:10px 12px 0} }
+.hero{border-radius:18px;overflow:hidden;background:#EFE8FB;box-shadow:0 6px 18px rgba(120,100,160,.10)}
+.hero img{display:block;width:100%;height:auto}
+
+/* ---------- category sections ---------- */
+.category{margin-top:14px;padding:14px 16px 16px;border-radius:16px;background:var(--category-bg)}
+.category-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.category-icon{position:relative;flex:none;width:52px;height:52px}
+.category-text{min-width:0}
+.category h2{font-size:1.3rem;font-weight:600;line-height:1.25;color:var(--category-accent)}
+.category-desc{margin-top:2px;font-size:.86rem;color:var(--text-secondary)}
+.new-tag{margin-left:auto;flex:none;padding:4px 12px;border-radius:999px;border:1.5px solid var(--category-accent);
+  background:var(--card-bg);color:var(--category-accent);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+
+/* the PNGs are 512px with transparent margins: draw them larger than their box, centred,
+   so the illustrations themselves come out at the same visual size (sizes set per icon) */
+.category-icon img,.game-icon img{position:absolute;left:50%;top:50%;width:var(--s);height:var(--s);max-width:none;
+  object-fit:contain;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy)));pointer-events:none}
+
+/* ---------- game cards ---------- */
+.game-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.game-card{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:10px;
+  min-height:72px;padding:12px 12px 12px 10px;border-radius:12px;background:var(--card-bg);
+  border:1.5px solid var(--category-border);box-shadow:0 2px 8px rgba(52,52,91,.05);
+  color:var(--text-primary);text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+a.game-card:hover{transform:translateY(-3px);border-color:var(--category-accent);box-shadow:0 6px 14px rgba(52,52,91,.08)}
+a.game-card:focus-visible{outline:3px solid var(--category-accent);outline-offset:3px}
+.game-icon{position:relative;width:44px;height:44px}
+.game-text{display:flex;flex-direction:column;min-width:0}
+.game-title{font-size:.92rem;font-weight:600;line-height:1.3}
+.game-desc{word-break:keep-all;overflow-wrap:anywhere;margin-top:2px;font-size:.78rem;line-height:1.35;color:var(--text-secondary)}
+.game-arrow{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--category-accent);color:#fff}
+.game-arrow svg{width:16px;height:16px}
+
+/* Coming soon: same card, quieter, not clickable */
+.game-card.is-soon{cursor:not-allowed;box-shadow:none}
+.game-card.is-soon .game-icon img{opacity:.5;filter:grayscale(.4)}
+.game-card.is-soon .game-title{color:#A3A8C0}
+.game-card.is-soon .game-desc{color:#B5B9CC}
+.soon-badge{align-self:flex-start;margin-top:5px;padding:2px 8px;border-radius:999px;background:var(--category-bg);color:var(--text-secondary);
+  font-size:.62rem;font-weight:600;letter-spacing:.03em;white-space:nowrap}
+
+/* ---------- footer (existing) ---------- */
+footer{position:relative;z-index:2;text-align:center;padding:36px 20px 48px;color:#8a869c;font-size:.85rem}
+footer span{color:#e17055}
+
+/* ---------- toast for header links to pages that are not published yet (same as the homepage) ---------- */
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;pointer-events:none;
+  background:#FFFFFF;color:#54485f;border:1.5px solid #FBD3E0;font-family:"Outfit","Noto Sans JP",system-ui,sans-serif;font-weight:700;
+  padding:11px 18px;border-radius:999px;transition:opacity .2s,transform .2s;z-index:1100;max-width:calc(100% - 32px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1000px){ .game-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:600px){
+  .category{padding:12px}
+  .category h2{font-size:1.12rem}
+  .category-desc{font-size:.78rem}
+  .category-icon{width:44px;height:44px}
+  .category-icon img{width:calc(var(--s) * .85);height:calc(var(--s) * .85)}
+  .game-grid{gap:10px}
+  /* two columns: icon + arrow on top, name underneath, so long names never collide */
+  .game-card{grid-template-columns:44px 1fr auto;grid-template-areas:"icon . arrow" "text text text";
+    align-items:start;row-gap:8px;padding:12px}
+  .game-icon{grid-area:icon;width:44px;height:44px}
+  .game-text{grid-area:text}
+  .game-arrow{grid-area:arrow}
+  .game-title{font-size:.9rem}
+}
+@media (max-width:340px){ .game-grid{grid-template-columns:minmax(0,1fr)} }
+@media (hover:none){ a.game-card:hover{transform:none} }
+@media (prefers-reduced-motion:reduce){ .game-card{transition:none} }
+</style>
+<link rel="stylesheet" href="../shared/site-layout.css">
+</head>
+
+<body class="sj-unified sj-page">
+<div class="shell">
+
+<header class="site-head" data-sj-common-header="1"><div class="wrap head-in"><a class="header-brand" href="../index.html" aria-label="Sakura Japanese home"><img src="../assets/tea-logo-transparent.png" alt="Sakura Japanese"></a><button type="button" aria-controls="menu" aria-expanded="false" aria-label="Open menu" class="menu-btn" id="menuBtn"><span></span><span></span><span></span></button><nav class="menu" id="menu" aria-label="Main"><a href="../index.html">Home</a><a aria-current="page" data-draft="Minna no Nihongo" href="#">Minna no Nihongo</a><a data-draft="JLPT" href="#">JLPT</a><a data-draft="Grammar" href="#">Grammar</a><a href="../wordgames/wordgames/wordgame/index.html">Games</a><a href="../reading-july-august/reading/index.html">Reading</a></nav><a aria-label="Search" class="search" data-draft="Search" href="#"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a></div></header>
+
+<main class="page">
+
+    <section class="hero" aria-label="Japanese Flashcards">
+   <img src="https://sakurakojapanesetutor0317.github.io/top/assets/flashcard-hero2.jpg" alt="Flashcards">
+    </section>
+
+    <!-- Minna no Nihongo -->
+    <section class="category category-minna" aria-labelledby="minna-title">
+      <div class="category-head">
+        <span class="category-icon"><img src="https://sakurakojapanesetutor0317.github.io/top/assets/icons/cat_minna.png" alt="" width="512" height="512" style="--s:148px;--dx:0.0px;--dy:0.0px"></span>
+        <div class="category-text">
+          <h2 id="minna-title">Minna no Nihongo</h2>
+          <p class="category-desc">Review vocabulary from Minna no Nihongo.</p>
+        </div>
+      </div>
+      <div class="game-grid">
+        <a class="game-card" href="https://sakurakojapanesetutor0317.github.io/top/minna/lesson1-13/index.html">
+          <span class="game-icon"><img src="https://sakurakojapanesetutor0317.github.io/top/assets/icons/lesson1-13.png" alt="" width="512" height="512" style="--s:121px;--dx:0.0px;--dy:0.0px"></span>
+          <span class="game-text"><span class="game-title">Lesson 1–13</span><span class="game-desc">Beginner Basics</span></span>
+          <span class="game-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="game-card" href="https://sakurakojapanesetutor0317.github.io/top/flashcard/minna/lesson14-25/index.html">
+          <span class="game-icon"><img src="https://sakurakojapanesetutor0317.github.io/top/assets/icons/lesson14-25.png" alt="" width="512" height="512" style="--s:117px;--dx:0.0px;--dy:0.1px"></span>
+          <span class="game-text"><span class="game-title">Lesson 14–25</span><span class="game-desc">Elementary</span></span>
+          <span class="game-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="game-card" href="https://sakurakojapanesetutor0317.github.io/top/flashcard/minna/lesson26-38/index.html">
+          <span class="game-icon"><img src="https://sakurakojapanesetutor0317.github.io/top/assets/icons/lesson26-38.png" alt="" width="512" height="512" style="--s:117px;--dx:0.0px;--dy:0.1px"></span>
+          <span class="game-text"><span class="game-title">Lesson 26–38</span><span class="game-desc">Intermediate</span></span>
+          <span class="game-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <div class="game-card is-soon" aria-disabled="true">
+          <span class="game-icon"><img src="https://sakurakojapanesetutor0317.github.io/top/assets/icons/lesson39-50.png" alt="" width="512" height="512" style="--s:121px;--dx:0.0px;--dy:0.0px"></span>
+          <span class="game-text"><span class="game-title">Lesson 39–50</span><span class="game-desc">Advanced N4</span><span class="soon-badge">Coming Soon</span></span>
+        </div>
+      </div>
+    </section>
+
+</main>
+
+<footer>
+    Made with <span>❤</span> for Japanese Learners
+</footer>
+
+</div>
+
+<div aria-live="polite" class="toast" id="toast" role="status"></div>
+<script>
+(function(){
+ const btn=document.getElementById('menuBtn'),menu=document.getElementById('menu');
+ btn.addEventListener('click',()=>{const open=menu.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));});
+ menu.addEventListener('click',e=>{if(e.target.closest('a')){menu.classList.remove('open');btn.setAttribute('aria-expanded','false');}});
+ const toast=document.getElementById('toast');let timer;
+ document.querySelectorAll('.site-head [data-draft]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();toast.textContent=a.dataset.draft+' — this page is coming soon.';toast.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>toast.classList.remove('show'),2400);}));
+})();
+</script>
+<script src="../shared/site-header.js"></script>
+</body>
+</html>
