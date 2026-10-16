@@ -105,8 +105,8 @@ img{max-width:100%;display:block}
 .levels a{font-weight:700;font-size:.8rem;min-width:40px;text-align:center;padding:3px 9px;border-radius:999px;background:#FFFFFF;color:var(--c);border:1px solid #DCDAF8;transition:background .15s}
 .levels a:hover{background:#E4E3FA}
 
-/* learning library (board: four equal columns) */
-.lib{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6cqw,18px)}
+/* learning library (board: two equal columns) */
+.lib{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6cqw,18px)}
 .book{--bg:#FFE3EE;--bd:#FCE3EC;--btn:#FBD3E1;--c:#3E3A52;position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;
   padding:clamp(18px,2.2cqw,26px) 12px clamp(16px,2cqw,22px);min-height:clamp(200px,22cqw,262px);border-radius:var(--r);background:var(--bg);border:1px solid var(--bd);box-shadow:0 4px 12px rgba(100,82,118,.06);transition:transform .15s}
 .book:hover{transform:translateY(-3px)}
@@ -284,6 +284,44 @@ footer .foot-in { min-height:0; padding-block:13px; display:flex; justify-conten
 .footer-message span { color:#D783A4; }
 @media(max-width:780px){ footer .foot-in{padding-block:12px} .footer-message{font-size:.85rem} }
 
+
+/* Learning Library: match the two-column study cards (icon left, text right). */
+@media (min-width:781px){
+  .lib .book{
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr);
+    align-items:center;
+    justify-items:stretch;
+    text-align:left;
+    column-gap:clamp(18px,2.4cqw,30px);
+    row-gap:8px;
+    padding:clamp(20px,2.6cqw,32px) clamp(22px,2.8cqw,34px);
+    min-height:clamp(150px,17cqw,196px);
+  }
+  .lib .book>img{width:clamp(96px,10.5cqw,132px);height:auto;margin:0;grid-row:1 / span 2;align-self:center}
+  .lib .book>div:not(.split){margin:0;padding-right:clamp(36px,3.6cqw,46px);min-width:0}
+  .lib .book h3{font-size:clamp(1.3rem,2.2cqw,1.7rem);line-height:1.3;color:var(--c)}
+  .lib .book .jp{font-size:clamp(.95rem,1.4cqw,1.15rem);font-weight:500;margin-top:6px;color:var(--ink)}
+  .lib .book>.arrow{position:absolute;right:clamp(20px,2.6cqw,30px);bottom:clamp(18px,2.4cqw,28px);margin:0}
+  .lib .book>.split{grid-column:2;grid-row:2;justify-content:flex-start;margin:0;align-self:start}
+  .lib .book.blue>img{grid-row:1 / span 2}
+}
+/* Identical arrow shape and sizing across both sections. */
+.lib .book>.arrow{width:clamp(36px,3.6cqw,46px);height:clamp(36px,3.6cqw,46px);color:var(--btn-ink,#fff)}
+.lib .book{--btn-ink:#fff}
+/* Games and Flashcards remain two independent links; use the same arrow motif. */
+.lib .split a svg{width:16px;height:16px;flex-shrink:0}
+@media (max-width:780px){
+  .lib .book{display:grid;grid-template-columns:58px minmax(0,1fr) auto;text-align:left;align-items:center;justify-items:start;gap:14px;padding:12px 14px;min-height:0}
+  .lib .book>img{width:58px;height:auto;margin:0}
+  .lib .book>div:not(.split){margin:0;padding:0;min-width:0}
+  .lib .book h3{font-size:1rem}
+  .lib .book .jp{font-size:.85rem;margin-top:3px}
+  .lib .book>.arrow{position:static;margin:0;width:26px;height:26px;background:none;color:var(--muted);border:0;box-shadow:none}
+  .lib .book>.split{grid-column:2/-1;justify-content:flex-start;margin:0}
+}
+/* Games / Flashcards: white pill backgrounds and blue text */
+.lib .book.blue .split a{background:#fff;color:var(--c);border:1px solid rgba(86,143,198,.18)}
 </style>
 <style>
 /* Visual-only pastel game-inspired comparison: original content, links and structure preserved */
@@ -304,13 +342,67 @@ body{background:#fce8ef}
 .arrow{border:2px solid rgba(255,255,255,.9);box-shadow:0 4px 0 rgba(195,120,153,.2),inset 0 2px 0 rgba(255,255,255,.48);background:var(--btn);color:#fff}
 .levels a,.split a{border:1px solid rgba(255,255,255,.8);box-shadow:0 3px 0 rgba(135,111,182,.14);border-radius:999px}
 @media(max-width:780px){.entry,.book{border-radius:20px!important}.arrow{box-shadow:none}}
-</style><link rel="stylesheet" href="shared/site-layout.css">
-</head>
-<body class="sj-unified sj-page">
+</style><style>
+/* Learning Library: match the upper study-card layout and typography. */
+.lib .book{--c:#c9638c;--btn:#f49ab9;--btn-ink:#fff}
+.lib .book.lav{--c:#8872c7;--btn:#b5a4e8}
+.lib .book.blue{--c:#568fc6;--btn:#83b6e8}
+.lib .book.yellow{--c:#b58a31;--btn:#e2b65b}
+.lib .book h3{color:var(--c)!important}
+
+
+
+</style><style>/* Learning Library: restrained coordinated pastel palette; layout and functionality unchanged. */
+.lib .book{--bg:#FCECF2;--c:#B96B8D;--btn:#E7A8BF;background:linear-gradient(155deg,#FFF9FC,var(--bg));}
+.lib .book.blue{--bg:#F0EBFA;--c:#8272B1;--btn:#BEB1E3;background:linear-gradient(155deg,#FBFAFF,var(--bg));}
+.lib .book.lav{--bg:#F5ECF6;--c:#9974A5;--btn:#CEB1D8;background:linear-gradient(155deg,#FCF9FD,var(--bg));}
+.lib .book.yellow{--bg:#FBEFF0;--c:#B57C8D;--btn:#E5B5C3;background:linear-gradient(155deg,#FFF9FA,var(--bg));}
+.lib .book.blue .split a{background:#fff;color:var(--c);border:1px solid rgba(130,114,177,.18);}
+
+/* Learning Library: one continuous fresh mint-to-soft-blue palette, not four separate colors. */
+.lib .book{--bg:#E6F7EF;--c:#3E8570;--btn:#8CCDB6;background:linear-gradient(155deg,#FAFFFC,var(--bg));}
+.lib .book.blue{--bg:#E5F6F2;--c:#40857D;--btn:#8BCDC4;background:linear-gradient(155deg,#FAFFFE,var(--bg));}
+.lib .book.lav{--bg:#E5F3F5;--c:#427E8B;--btn:#8DC5D0;background:linear-gradient(155deg,#FAFEFF,var(--bg));}
+.lib .book.yellow{--bg:#E6F1F8;--c:#487B99;--btn:#96C3DD;background:linear-gradient(155deg,#FBFDFF,var(--bg));}
+.lib .book.blue .split a{background:#fff;color:var(--c);border:1px solid rgba(64,133,125,.18);}
+
+/* User-selected coordinated cool pastel palette; keep card order and functionality. */
+.lib .book{--bg:#FFD6ED;--c:#C45C88;--btn:#F3A0C2;background:linear-gradient(155deg,#FFF6FA 0%,#FFD6ED 100%)}
+.lib .book.blue{--bg:#D7E3EF;--c:#7562BD;--btn:#BBA9EE;background:linear-gradient(155deg,#F7F5FF 0%,#D7E3EF 100%)}
+.lib .book.lav{--bg:#E8D8FF;--c:#AD5DA7;--btn:#E9A5DE;background:linear-gradient(155deg,#FFF5FD 0%,#E8D8FF 100%)}
+.lib .book.yellow{--bg:#FFE6FB;--c:#438DA5;--btn:#9CD8E7;background:linear-gradient(155deg,#F5FDFF 0%,#FFE6FB 100%)}
+.lib .book.blue .split a{background:#fff;color:var(--c);border:1px solid rgba(117,98,189,.18)}
+</style><style>
+/* Sakura pink / blue / lavender palette — coordinated backgrounds, headings and arrows. */
+.lib .book{--bg:#FFD1E8;--c:#B64D83;--btn:#FF9DCB;--btn-ink:#fff;background:linear-gradient(155deg,#FFF5FB 0%,#FFD1E8 100%)}
+.lib .book.blue{--bg:#E4EEFF;--c:#526AC5;--btn:#B9CEFF;--btn-ink:#354E9C;background:linear-gradient(155deg,#F8FAFF 0%,#E4EEFF 100%)}
+.lib .book.lav{--bg:#E8D8FF;--c:#7556BD;--btn:#C8B6FF;--btn-ink:#503C94;background:linear-gradient(155deg,#FAF6FF 0%,#E8D8FF 100%)}
+.lib .book.yellow{--bg:#FFE6FB;--c:#A64F9A;--btn:#F3A9E7;--btn-ink:#773A70;background:linear-gradient(155deg,#FFF7FE 0%,#FFE6FB 100%)}
+.lib .book h3{color:var(--c)!important}
+.lib .book>.arrow{background:var(--btn);color:var(--btn-ink)}
+/* Keep Games and Flashcards as separate white pills with coordinated blue text. */
+.lib .book.blue .split a{background:#fff;color:#526AC5;border:1px solid #C7D7FA}
+@media(max-width:780px){.lib .book>.arrow{background:none;color:var(--c)}}
+</style></head>
+<body>
 <div aria-hidden="true" class="page-bg"></div>
 <div aria-hidden="true" class="petals" id="petals"></div>
 <div class="shell">
-<header class="site-head" data-sj-common-header="1"><div class="wrap head-in"><a class="header-brand" href="index.html" aria-label="Sakura Japanese home"><img src="assets/tea-logo-transparent.png" alt="Sakura Japanese"></a><button type="button" aria-controls="menu" aria-expanded="false" aria-label="Open menu" class="menu-btn" id="menuBtn"><span></span><span></span><span></span></button><nav class="menu" id="menu" aria-label="Main"><a aria-current="page" href="index.html">Home</a><a data-draft="Minna no Nihongo" href="#">Minna no Nihongo</a><a data-draft="JLPT" href="#">JLPT</a><a data-draft="Grammar" href="#">Grammar</a><a href="wordgames/wordgames/wordgame/index.html">Games</a><a href="reading-july-august/reading/index.html">Reading</a></nav><a aria-label="Search" class="search" data-draft="Search" href="#"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a></div></header>
+<header class="site-head">
+<div class="wrap head-in">
+<a aria-label="Sakura Japanese home" class="header-brand" href="#top"><img alt="Sakura Japanese" src="https://sakurakojapanesetutor0317.github.io/top/assets/tea-logo-transparent.png"/></a>
+<button aria-controls="menu" aria-expanded="false" aria-label="Open menu" class="menu-btn" id="menuBtn"><span></span><span></span><span></span></button>
+<nav aria-label="Main" class="menu" id="menu">
+<a aria-current="page" href="#top">Home</a>
+<a data-draft="Minna no Nihongo" href="#">Minna no Nihongo</a>
+<a data-draft="JLPT" href="#">JLPT</a>
+<a data-draft="Grammar Database" href="#">Grammar</a>
+<a href="https://sakurakojapanesetutor0317.github.io/top/wordgame/index.html" rel="noopener">Games</a>
+<a href="https://sakurakojapanesetutor0317.github.io/top/reading/index.html" rel="noopener">Reading</a>
+</nav>
+<a aria-label="Search" class="search" data-draft="Search" href="#"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></a>
+</div>
+</header>
 <section aria-label="A Little Japanese, Every Day." class="hero" id="top">
 <img alt="A Little Japanese, Every Day. Learn, play, and grow at your own pace." class="hero-img" height="793" id="randomHeroImage" src="https://sakurakojapanesetutor0317.github.io/top/assets/hero-pastel0.jpg" width="1983"/>
 </section>
@@ -334,30 +426,30 @@ body{background:#fce8ef}
 <section aria-labelledby="lib-title" class="sec">
 <h2 id="lib-title">Learning Library</h2>
 <div class="lib">
-<a class="book" href="https://sakurakojapanesetutor0317.github.io/top/kana-renshu/" rel="noopener" >
+
+
+
+
+<a class="book" href="https://sakurakojapanesetutor0317.github.io/top/kana-renshu/" rel="noopener">
 <img alt="" src="https://sakurakojapanesetutor0317.github.io/top/assets/icons/kana.png"/>
 <div><h3>Kana &amp; Kanji</h3><p class="jp">ひらがな・カタカナ・<ruby>漢字<rt>かんじ</rt></ruby></p></div>
 <span aria-hidden="true" class="arrow"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-</a>
-<a class="book lav" data-draft="Grammar Database" href="#">
-<img alt="" src="https://sakurakojapanesetutor0317.github.io/top//assets/icons/grammar.png"/>
-<div><h3>Grammar Database</h3><p class="jp"><ruby>文法<rt>ぶんぽう</rt></ruby>データベース</p></div>
-<span aria-hidden="true" class="arrow"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-</a>
-<div class="book blue">
+</a><div class="book blue">
 <img alt="" src="https://sakurakojapanesetutor0317.github.io/top/assets/icons/games.png"/>
 <div><h3>Games &amp; Flashcards</h3><p class="jp">ゲーム・フラッシュカード</p></div>
 <div class="split">
-<a href="https://sakurakojapanesetutor0317.github.io/top/wordgame/index.html" rel="noopener" >Games <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-<a href="https://sakurakojapanesetutor0317.github.io/top/flashcard/" rel="noopener" >Flashcards <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a href="https://sakurakojapanesetutor0317.github.io/top/wordgame/index.html" rel="noopener">Games <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a href="https://sakurakojapanesetutor0317.github.io/top/flashcard/" rel="noopener">Flashcards <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
 </div>
-</div>
-<a class="book yellow" href="https://sakurakojapanesetutor0317.github.io/top/reading/index.html" rel="noopener" >
+</div><a class="book lav" data-draft="Grammar Database" href="#">
+<img alt="" src="https://sakurakojapanesetutor0317.github.io/top/assets/icons/grammar.png"/>
+<div><h3>Grammar Database</h3><p class="jp"><ruby>文法<rt>ぶんぽう</rt></ruby>データベース</p></div>
+<span aria-hidden="true" class="arrow"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+</a><a class="book yellow" href="https://sakurakojapanesetutor0317.github.io/top/reading/index.html" rel="noopener">
 <img alt="" src="https://sakurakojapanesetutor0317.github.io/top/assets/icons/reading.png"/>
 <div><h3>Reading Materials</h3><p class="jp"><ruby>読解<rt>どっかい</rt></ruby><ruby>教材<rt>きょうざい</rt></ruby></p></div>
 <span aria-hidden="true" class="arrow"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
-</a>
-</div>
+</a></div>
 </section>
 </main>
 <footer>
@@ -434,7 +526,5 @@ p.style.setProperty("--o", rnd(.80, 1.0).toFixed(2));
   if (reduce.addEventListener) reduce.addEventListener("change", function(){ if (reduce.matches) layer.innerHTML = ""; else fill(false); });
 })();
 </script>
-<script src="shared/site-header.js"></script>
 </body>
 </html>
-
