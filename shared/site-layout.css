@@ -1,0 +1,25 @@
+/* Sakura Japanese common site frame and navigation. Loaded AFTER page CSS. */
+.sj-unified{margin:0!important}
+.sj-unified .shell,.sj-unified .site-frame{position:relative!important;z-index:1!important;box-sizing:border-box!important;width:76%!important;max-width:1080px!important;min-height:100vh!important;margin:0 auto!important;padding-top:0!important;border:0!important;border-radius:0!important;overflow:visible!important;background:rgba(255,252,253,.69)!important;box-shadow:0 0 36px rgba(213,154,183,.12)!important}
+.sj-unified .site-head{position:sticky!important;top:0!important;left:auto!important;transform:none!important;width:100%!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important;z-index:1000!important;display:block!important;background:linear-gradient(180deg,rgba(255,249,251,.97),rgba(252,232,239,.94))!important;border:0!important;border-bottom:1px solid #fff!important;border-radius:0!important;box-shadow:0 5px 15px rgba(188,128,157,.13)!important;-webkit-backdrop-filter:blur(9px)!important;backdrop-filter:blur(9px)!important}
+.sj-unified .site-head .head-in{position:relative!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:16px!important;height:64px!important;min-height:64px!important;max-width:none!important;width:100%!important;box-sizing:border-box!important;margin:0 auto!important;padding:0 clamp(20px,3.2%,40px)!important}
+.sj-unified .site-head .header-brand{display:block!important;position:static!important;flex:0 0 auto!important;margin:0!important;padding:0!important;background:none!important;border:0!important;width:auto!important;height:auto!important}
+.sj-unified .site-head .header-brand img{display:block!important;width:clamp(118px,16vw,174px)!important;height:auto!important;max-height:58px!important;object-fit:contain!important}
+.sj-unified .site-head .menu{display:flex!important;align-items:center!important;justify-content:flex-end!important;flex:0 1 auto!important;gap:6px!important;margin-left:auto!important;padding:0!important;position:static!important;transform:none!important;width:auto!important;height:auto!important;background:none!important;box-shadow:none!important;border:0!important}
+.sj-unified .site-head .menu a{position:relative!important;display:block!important;padding:8px 12px!important;border-radius:999px!important;font-family:'Poppins',sans-serif!important;font-size:.92rem!important;font-weight:500!important;line-height:1.6!important;letter-spacing:.005em!important;color:#54485f!important;text-decoration:none!important;white-space:nowrap!important;background:transparent!important}
+.sj-unified .site-head .menu a[aria-current="page"]{color:#df739c!important;font-weight:600!important}
+.sj-unified .site-head .menu a[aria-current="page"]:after{content:'';position:absolute;bottom:4px;left:12px;right:12px;height:2px;background:#df739c;border-radius:2px}
+.sj-unified .site-head .search{display:grid!important;place-items:center!important;flex:0 0 auto!important;width:40px!important;height:40px!important;margin:0!important;padding:0!important;border-radius:12px!important;color:#54485f!important;text-decoration:none!important}
+.sj-unified .site-head .search svg{display:block;width:21px;height:21px}
+.sj-unified .site-head .menu-btn{display:none!important;width:42px!important;height:42px!important;border:0!important;background:none!important;cursor:pointer!important;padding:9px!important;border-radius:12px!important;flex:0 0 auto!important}
+.sj-unified .site-head .menu-btn span{display:block!important;width:100%!important;height:2px!important;margin:5px 0!important;background:#54485f!important;border-radius:2px!important}
+@media(max-width:1000px){.sj-unified .shell,.sj-unified .site-frame{width:90%!important}}
+@media(max-width:780px){
+.sj-unified .shell,.sj-unified .site-frame{width:100%!important;max-width:none!important}
+.sj-unified .site-head .head-in{height:64px!important;min-height:64px!important;padding:0 20px!important}
+.sj-unified .site-head .menu-btn{display:block!important;margin-left:auto!important}
+.sj-unified .site-head .search{display:none!important}
+.sj-unified .site-head .menu{display:none!important;position:absolute!important;top:64px!important;left:0!important;right:0!important;width:100%!important;height:auto!important;transform:none!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;margin:0!important;padding:10px 18px 16px!important;background:rgba(255,249,251,.99)!important;box-shadow:0 10px 18px rgba(188,128,157,.16)!important;border-bottom:1px solid #fff!important;z-index:1001!important}
+.sj-unified .site-head .menu.open{display:flex!important}
+.sj-unified .site-head .menu a{font-size:.94rem!important;padding:10px 12px!important}
+}
